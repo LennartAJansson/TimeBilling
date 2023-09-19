@@ -1,0 +1,26 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@hostname=localhost
+@port=7107
+
+GET https://{{hostname}}:{{port}}/Customers/GetCustomers
+
+###
+GET https://{{hostname}}:{{port}}/People/GetPeople
+
+###
+POST https://{{hostname}}:{{port}}/Customers/CreateCustomer
+Content-Type: application/json
+
+{
+    "name": "Sandvik"
+}
+
+###
+POST https://{{hostname}}:{{port}}/People/CreatePerson
+Content-Type: application/json
+
+{
+    "name": "Nisse Hult"
+}
+
+###

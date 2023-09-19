@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TimeBilling.App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TimeBilling.App"
+    xmlns:views="clr-namespace:TimeBilling.App.Views"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="AliceBlue">
+
+    <Shell.FlyoutHeader>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+            <!--<Image Source="wind_face_3d.png" WidthRequest="80" HeightRequest="80" />-->
+            <Label Text="Timeplanning" FontFamily="OpenSansSemibold" FontSize="32" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
+    <ShellContent Title="Customers" ContentTemplate="{DataTemplate views:CustomersView}" Route="Customers"/>
+    <ShellContent Title="People" ContentTemplate="{DataTemplate views:PeopleView}" Route="People"/>
+    <ShellContent Title="Workloads" ContentTemplate="{DataTemplate views:WorkloadsView}" Route="Workloads"/>
+</Shell>
