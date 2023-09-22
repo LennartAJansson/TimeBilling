@@ -17,15 +17,19 @@ builder.Services.AddFeatureManagement(builder.Configuration.GetSection("FeatureM
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin()));
 
 
 WebApplication app = builder.Build();
-
 if (app.Environment.IsDevelopment())
 {
     _ = app.UseSwagger();
     _ = app.UseSwaggerUI();
 }
+app.UseCors();
 
 app.UseHttpsRedirection();
 

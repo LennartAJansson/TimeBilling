@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 using TimeBilling.Model;
 
-internal sealed class TimeBillingDbContext : DbContext, IDbContext, ITimeBillingDbContext
+internal sealed class TimeBillingDbContext : DbContext, ITimeBillingDbContext
 {
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<Person> People => Set<Person>();
