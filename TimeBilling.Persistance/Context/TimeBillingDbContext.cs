@@ -1,8 +1,6 @@
 ﻿namespace TimeBilling.Persistance.Context;
 
 using System.Reflection;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -18,12 +16,8 @@ internal sealed class TimeBillingDbContext : DbContext, ITimeBillingDbContext
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder
+    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder
             .ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => base.OnConfiguring(optionsBuilder);
-
 }

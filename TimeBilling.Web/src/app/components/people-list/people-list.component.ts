@@ -1,23 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Person } from '../../models/person.model';
 import { TimebillingService } from '../../services/timebilling.service';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource} from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPersonDialog } from '../add-person/add-person-dialog';
 
 @Component({
   selector: 'app-people-list',
   templateUrl: './people-list.component.html',
   styleUrls: ['./people-list.component.scss']
 })
-export class PeopleListComponent {
+export class PeopleListComponent implements OnInit{
   caption = 'People';
 
   public people: Person[] = [];
   public dataSource = new MatTableDataSource<Person>();
   columns: string[] = ['personId', 'name', 'actions'];
 
-  public currentPerson?: Person | null;
+  public newPerson?: Person = {}
+;
   currentIndex = -1;
-  constructor(private service: TimebillingService) {
+  constructor(private service: TimebillingService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -36,25 +39,32 @@ export class PeopleListComponent {
 
   refreshList(): void {
     this.retrievePeople();
-    this.currentPerson = null;
     this.currentIndex = -1;
   }
 
   setActivePerson(person: Person, index: number): void {
-    console.log("Current selected:");
-    console.log(person);
-    this.currentPerson = person;
     this.currentIndex = index;
   }
 
   removePerson(id: number): void {
-    console.log("Current deleted:");
-    console.log(id);
-  //  this.service.deletePerson(id).subscribe({
-  //    next: (res) => {
-  //      this.refreshList();
-  //    },
-  //    error: (e) => console.error(e),
-  //  });
+    this.service.deletePerson(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.refreshList();
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddPersonDialog, {
+      data: this.newPerson,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.newPerson = result;
+      console.log(this.newPerson);
+    });
   }
 }

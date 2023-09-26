@@ -13,7 +13,7 @@
   <ItemGroup>
     <None Include=".vscode\launch.json" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <Folder Include="src\app\environments\" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

@@ -1,11 +1,12 @@
+import { Time } from "@angular/common";
 import { Customer } from "./customer.model";
 import { Person } from "./person.model";
 
 export class Workload {
-  workloadId: any;
+  workloadId?: number;
   begin?: Date;
   end?: Date;
-  total: any;
+  total?: Time;
   person?: Person;
   customer?: Customer;
 }

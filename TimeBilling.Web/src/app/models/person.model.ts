@@ -1,4 +1,4 @@
 export class Person {
-  personId: any;
+  personId?: number;
   name?: string;
 }
