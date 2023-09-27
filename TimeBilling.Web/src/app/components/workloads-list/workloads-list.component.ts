@@ -66,6 +66,9 @@ export class WorkloadsListComponent implements OnInit {
       console.log('The dialog was closed');
       this.newWorkload = result;
       console.log(this.newWorkload);
+      //TODO: Validate input
+      //TODO: Send to API
+      //TODO: Add to workloads
     });
   }
 }

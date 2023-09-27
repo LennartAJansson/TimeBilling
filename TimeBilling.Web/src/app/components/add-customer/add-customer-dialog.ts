@@ -15,6 +15,8 @@ import { Customer } from "../../models/customer.model";
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
 })
 export class AddCustomerDialog {
+  caption = 'Add Customer';
+
   constructor(
     public dialogRef: MatDialogRef<AddCustomerDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Customer,

@@ -15,7 +15,7 @@ import { Person } from '../../models/person.model';
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
 })
 export class AddPersonDialog {
-  caption = 'Person';
+  caption = 'Add Person';
 
   constructor(
     public dialogRef: MatDialogRef<AddPersonDialog>,

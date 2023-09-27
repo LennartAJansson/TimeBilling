@@ -65,6 +65,9 @@ export class PeopleListComponent implements OnInit{
       console.log('The dialog was closed');
       this.newPerson = result;
       console.log(this.newPerson);
+      //TODO: Validate input
+      //TODO: Send to API
+      //TODO: Add to people list
     });
   }
 }

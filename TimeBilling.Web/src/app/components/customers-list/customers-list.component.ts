@@ -65,6 +65,9 @@ export class CustomersListComponent implements OnInit {
       console.log('The dialog was closed');
       this.newCustomer = result;
       console.log(this.newCustomer);
+      //TODO: Validate input
+      //TODO: Send to API
+      //TODO: Add to customers
     });
   }
 }
