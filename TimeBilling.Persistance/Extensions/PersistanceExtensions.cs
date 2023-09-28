@@ -1,8 +1,7 @@
 ﻿namespace Microsoft.Extensions.DependencyInjection;
 
 using Microsoft.EntityFrameworkCore;
-
-using TimeBilling.Domain.Abstract;
+using TimeBilling.Domain.Abstract.Services;
 using TimeBilling.Persistance.Context;
 using TimeBilling.Persistance.Services;
 

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.FeatureManagement;
 using TimeBilling.Api.Filters;
 using TimeBilling.Contracts;
+using TimeBilling.Domain.Abstract.Handlers;
 
 public static class CustomersEndpoints
 {
@@ -21,9 +22,9 @@ public static class CustomersEndpoints
     {
         RouteGroupBuilder group = builder.MapGroup("Customers").WithTags("Customers");
         _ = group.MapGet("/GetCustomers",
-                async Task<Results<Ok<IEnumerable<CustomerResponse>>, NotFound>> ([FromServices] IMediator mediator) =>
+                async Task<Results<Ok<IEnumerable<CustomerResponse>>, NotFound>> ([FromServices] ICustomerHandlers handler) =>
                 {
-                    IEnumerable<CustomerResponse>? result = await mediator.Send(GetCustomersQuery.Create());
+                    IEnumerable<CustomerResponse>? result = await handler.GetCustomers(GetCustomersQuery.Create());
                     return result is null || !result.Any()
                         ? TypedResults.NotFound()
                         : TypedResults.Ok(result);
@@ -35,9 +36,9 @@ public static class CustomersEndpoints
             .Produces<CustomerResponse[]>(StatusCodes.Status200OK);
 
         _ = group.MapGet("/GetCustomer/{customerId}",
-                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromRoute] int customerId, [FromServices] IMediator mediator) =>
+                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromRoute] int customerId, [FromServices] ICustomerHandlers handler) =>
                 {
-                    CustomerResponse? result = await mediator.Send(GetCustomerQuery.Create(customerId));
+                    CustomerResponse? result = await handler.GetCustomer(GetCustomerQuery.Create(customerId));
                     return result is null
                         ? TypedResults.NotFound()
                         : TypedResults.Ok(result);
@@ -50,9 +51,9 @@ public static class CustomersEndpoints
             .Produces<CustomerResponse>(StatusCodes.Status200OK);
 
         _ = group.MapPost("/CreateCustomer",
-                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromBody] CreateCustomerCommand customer, [FromServices] IMediator mediator) =>
+                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromBody] CreateCustomerCommand customer, [FromServices] ICustomerHandlers handler) =>
                 {
-                    CustomerResponse? result = await mediator.Send(customer);
+                    CustomerResponse? result = await handler.CreateCustomer(customer);
                     return result is null
                         ? TypedResults.NotFound()
                         : TypedResults.Ok(result);
@@ -64,9 +65,9 @@ public static class CustomersEndpoints
             .Produces<CustomerResponse>(StatusCodes.Status200OK);
 
         _ = group.MapPut("/UpdateCustomer",
-                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromBody] UpdateCustomerCommand customer, [FromServices] IMediator mediator) =>
+                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromBody] UpdateCustomerCommand customer, [FromServices] ICustomerHandlers handler) =>
                 {
-                    CustomerResponse? result = await mediator.Send(customer);
+                    CustomerResponse? result = await handler.UpdateCustomer(customer);
                     return result is null
                         ? TypedResults.NotFound()
                         : TypedResults.Ok(result);
@@ -78,9 +79,9 @@ public static class CustomersEndpoints
             .Produces<CustomerResponse>(StatusCodes.Status200OK);
 
         _ = group.MapDelete("/DeleteCustomer/{customerId}",
-                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromRoute] int customerId, [FromServices] IMediator mediator) =>
+                async Task<Results<Ok<CustomerResponse>, NotFound>> ([FromRoute] int customerId, [FromServices] ICustomerHandlers handler) =>
                 {
-                    CustomerResponse? result = await mediator.Send(DeleteCustomerCommand.Create(customerId));
+                    CustomerResponse? result = await handler.DeleteCustomer(DeleteCustomerCommand.Create(customerId));
                     return result is null
                         ? TypedResults.NotFound()
                         : TypedResults.Ok(result);

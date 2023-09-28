@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
-using TimeBilling.Domain.Abstract;
+using TimeBilling.Domain.Abstract.Services;
 using TimeBilling.Model;
 using TimeBilling.Persistance.Context;
 
@@ -25,7 +24,7 @@ internal sealed class TimeBillingService : ITimeBillingService
 
     public async Task<Customer> CreateCustomer(Customer customer)
     {
-        _ = context.Customers.Add(customer);
+        _ = context.Add(customer);
         _ = await context.SaveChangesAsync();
 
         return customer;
@@ -33,7 +32,7 @@ internal sealed class TimeBillingService : ITimeBillingService
 
     public async Task<Person> CreatePerson(Person person)
     {
-        _ = context.People.Add(person);
+        _ = context.Add(person);
         _ = await context.SaveChangesAsync();
 
         return person;
@@ -41,7 +40,7 @@ internal sealed class TimeBillingService : ITimeBillingService
 
     public async Task<Workload> BeginWorkload(Workload workload)
     {
-        _ = context.Workloads.Add(workload);
+        _ = context.Add(workload);
         _ = await context.SaveChangesAsync();
 
         //Explicitly Loading
@@ -59,7 +58,7 @@ internal sealed class TimeBillingService : ITimeBillingService
             return null;
         }
 
-        _ = context.Customers.Remove(customer);
+        _ = context.Remove(customer);
         _ = await context.SaveChangesAsync();
 
         return customer;
@@ -73,7 +72,7 @@ internal sealed class TimeBillingService : ITimeBillingService
             return null;
         }
 
-        _ = context.People.Remove(person);
+        _ = context.Remove(person);
         _ = await context.SaveChangesAsync();
 
         return person;
@@ -91,7 +90,7 @@ internal sealed class TimeBillingService : ITimeBillingService
         context.Entry(workload).Reference(p => p.Customer).Load();
         context.Entry(workload).Reference(p => p.Person).Load();
 
-        _ = context.Workloads.Remove(workload);
+        _ = context.Remove(workload);
         _ = await context.SaveChangesAsync();
 
         return workload;

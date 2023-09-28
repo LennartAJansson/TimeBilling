@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 using TimeBilling.Model;
 
-internal sealed class TimeBillingDbContext : DbContext, ITimeBillingDbContext
+internal class TimeBillingDbContext : DbContext, ITimeBillingDbContext
 {
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<Person> People => Set<Person>();
@@ -20,4 +20,6 @@ internal sealed class TimeBillingDbContext : DbContext, ITimeBillingDbContext
             .ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => base.OnConfiguring(optionsBuilder);
+    public virtual bool CreateDb() => throw new NotImplementedException();
+    public virtual bool DeleteDb() => throw new NotImplementedException();
 }

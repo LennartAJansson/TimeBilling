@@ -1,4 +1,4 @@
-﻿namespace TimeBilling.Domain.Abstract;
+﻿namespace TimeBilling.Domain.Abstract.Services;
 
 using TimeBilling.Model;
 

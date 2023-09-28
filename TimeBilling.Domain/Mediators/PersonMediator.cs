@@ -10,7 +10,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 using TimeBilling.Contracts;
-using TimeBilling.Domain.Abstract;
+using TimeBilling.Domain.Abstract.Services;
 using TimeBilling.Model;
 
 public class PersonMediator :
