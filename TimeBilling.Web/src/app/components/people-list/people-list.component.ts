@@ -57,14 +57,25 @@ export class PeopleListComponent implements OnInit{
   }
 
   openDialog(): void {
+    this.newPerson = {};
     const dialogRef = this.dialog.open(AddPersonDialog, {
       data: this.newPerson,
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.newPerson = result;
-      console.log(this.newPerson);
+      if(result!== undefined){
+        this.newPerson = result;
+        console.log(this.newPerson);
+        this.service.createPerson(this.newPerson!).subscribe({
+          next: (res) => {
+            console.log(res);
+            //this.people.push(this.newPerson!);
+            this.refreshList();
+          },
+          error: (e) => console.error(e),
+        });
+      }
       //TODO: Validate input
       //TODO: Send to API
       //TODO: Add to people list
