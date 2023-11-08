@@ -15,27 +15,27 @@
     <!-- PersonId Column -->
     <ng-container matColumnDef="personId">
         <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.personId}} </td>
+        <td mat-cell *matCellDef="let person"> {{person.personId}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let person"> {{person.name}} </td>
     </ng-container>
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let person">
             <button mat-icon-button
                     color="primary"
-                    [routerLink]="['/person', element.personId]">
+                    [routerLink]="['/person', person.personId]">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button
                     color="warn"
-                    (click)="removePerson(element.personId)">
+                    (click)="removePerson(person.personId)">
                 <mat-icon>delete</mat-icon>
             </button>
         </td>

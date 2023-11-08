@@ -67,18 +67,18 @@ export class PeopleListComponent implements OnInit{
       if(result!== undefined){
         this.newPerson = result;
         console.log(this.newPerson);
-        this.service.createPerson(this.newPerson!).subscribe({
-          next: (res) => {
-            console.log(res);
-            //this.people.push(this.newPerson!);
-            this.refreshList();
-          },
-          error: (e) => console.error(e),
-        });
+        if(this.newPerson!.name?.length !== 0){
+          this.service.createPerson(this.newPerson!).subscribe({
+            next: (res) => {
+              console.log(res);
+              //this.people.push(this.newPerson!);
+              this.refreshList();
+            },
+            error: (e) => console.error(e),
+          });
+        }
       }
       //TODO: Validate input
-      //TODO: Send to API
-      //TODO: Add to people list
     });
   }
 }
