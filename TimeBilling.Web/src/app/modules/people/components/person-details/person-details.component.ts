@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Workload } from '../../models/workload.model';
+import { Workload } from '../../../../models/workload.model';
 import { MatTableDataSource } from '@angular/material/table';
-import { Person } from '../../models/person.model';
+import { Person } from '../../../../models/person.model';
 import { ActivatedRoute } from '@angular/router';
-import { TimebillingService } from '../../services/timebilling.service';
+import { TimebillingService } from '../../../../services/timebilling.service';
 
 @Component({
   selector: 'app-person-details',

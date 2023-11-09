@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Workload } from '../../models/workload.model';
+import { Workload } from '../../../../models/workload.model';
 import { MatTableDataSource } from '@angular/material/table';
-import { Customer } from '../../models/customer.model';
-import { TimebillingService } from '../../services/timebilling.service';
+import { Customer } from '../../../../models/customer.model';
+import { TimebillingService } from '../../../../services/timebilling.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

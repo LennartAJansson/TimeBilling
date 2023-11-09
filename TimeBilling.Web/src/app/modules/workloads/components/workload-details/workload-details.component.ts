@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Workload } from '../../models/workload.model';
+import { Workload } from '../../../../models/workload.model';
 //import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { TimebillingService } from '../../services/timebilling.service';
+import { TimebillingService } from '../../../../services/timebilling.service';
 
 @Component({
   selector: 'app-workload-details',

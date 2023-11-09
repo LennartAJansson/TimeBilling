@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Workload } from '../../models/workload.model';
-import { TimebillingService } from '../../services/timebilling.service';
+import { Workload } from '../../../../models/workload.model';
+import { TimebillingService } from '../../../../services/timebilling.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddWorkloadDialog } from '../add-workload/add-workload-dialog';

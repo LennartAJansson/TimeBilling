@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../models/customer.model';
-import { TimebillingService } from '../../services/timebilling.service';
+import { Customer } from '../../../../models/customer.model';
+import { TimebillingService } from '../../../../services/timebilling.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomerDialog } from '../add-customer/add-customer-dialog';

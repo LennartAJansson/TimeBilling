@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Person } from '../../models/person.model';
-import { TimebillingService } from '../../services/timebilling.service';
+import { Component, OnInit, inject } from '@angular/core';
+import { Person } from '../../../../models/person.model';
+import { TimebillingService } from '../../../../services/timebilling.service';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPersonDialog } from '../add-person/add-person-dialog';
@@ -16,6 +16,9 @@ export class PeopleListComponent implements OnInit{
   public people: Person[] = [];
   public dataSource = new MatTableDataSource<Person>();
   columns: string[] = ['personId', 'name', 'actions'];
+
+  //Simon är puckad
+  service2 = inject(TimebillingService);
 
   public newPerson?: Person = {}
 ;
