@@ -15,7 +15,8 @@ const routes: Routes = [
     CustomersListComponent,
     CustomerDetailsComponent
   ],
-  imports: [RouterModule.forRoot(routes),
+  imports: [
+    RouterModule.forRoot(routes),
     CommonModule, AngularMaterialModule
   ]
 })
