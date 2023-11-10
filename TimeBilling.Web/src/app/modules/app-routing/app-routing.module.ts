@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { WorkloadsListComponent } from './modules/workloads/components/workloads-list/workloads-list.component';
-import { WorkloadDetailsComponent } from './modules/workloads/components/workload-details/workload-details.component';
-import { PeopleListComponent } from './modules/people/components/people-list/people-list.component';
-import { PersonDetailsComponent } from './modules/people/components/person-details/person-details.component';
-import { CustomersListComponent } from './modules/customers/components/customers-list/customers-list.component';
-import { CustomerDetailsComponent } from './modules/customers/components/customer-details/customer-details.component';
+import { HomeComponent } from '../app/components/home/home.component';
+import { WorkloadsListComponent } from '../workloads/components/workloads-list/workloads-list.component';
+import { WorkloadDetailsComponent } from '../workloads/components/workload-details/workload-details.component';
+import { PeopleListComponent } from '../people/components/people-list/people-list.component';
+import { PersonDetailsComponent } from '../people/components/person-details/person-details.component';
+import { CustomersListComponent } from '../customers/components/customers-list/customers-list.component';
+import { CustomerDetailsComponent } from '../customers/components/customer-details/customer-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

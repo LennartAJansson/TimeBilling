@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddPersonDialog } from './components/add-person/add-person-dialog';
 import { PeopleListComponent } from './components/people-list/people-list.component';
 import { PersonDetailsComponent } from './components/person-details/person-details.component';
-import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AngularMaterialModule } from 'src/app/modules/angular-material/angular-material.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [

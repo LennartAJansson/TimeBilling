@@ -2,7 +2,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Workload } from '../../../../models/workload.model';
-import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AngularMaterialModule } from 'src/app/modules/angular-material/angular-material.module';
 
 @Component({
   selector: 'app-add-workload-dialog',

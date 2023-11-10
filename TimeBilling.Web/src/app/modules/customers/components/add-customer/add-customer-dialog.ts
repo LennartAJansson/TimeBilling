@@ -2,7 +2,7 @@
 import { Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { Customer } from "../../../../models/customer.model";
-import { AngularMaterialModule } from "src/app/angular-material.module";
+import { AngularMaterialModule } from "src/app/modules/angular-material/angular-material.module";
 
 @Component({
   selector: 'app-add-customer-dialog',

@@ -2,22 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from '../app-routing/app-routing.module';
+import { AppComponent } from './components/app-component/app.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 
-import { AngularMaterialModule } from './angular-material.module';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
-import { TimebillingService } from './services/timebilling.service';
-import { environment } from './environments/environment';
-import { CustomersModule } from './modules/customers/customers.module';
-import { PeopleModule } from './modules/people/people.module';
-import { WorkloadsModule } from './modules/workloads/workloads.module';
+import { TimebillingService } from '../../services/timebilling.service';
+import { CustomersModule } from '../customers/customers.module';
+import { PeopleModule } from '../people/people.module';
+import { WorkloadsModule } from '../workloads/workloads.module';
 
 @NgModule({
   declarations: [
