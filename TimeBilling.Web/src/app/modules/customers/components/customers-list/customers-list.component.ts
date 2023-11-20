@@ -4,6 +4,7 @@ import { TimebillingService } from '../../../../services/timebilling.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomerDialog } from '../add-customer/add-customer-dialog';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-customers-list',
@@ -17,7 +18,7 @@ export class CustomersListComponent implements OnInit {
   public dataSource = new MatTableDataSource<Customer>();
   columns: string[] = ['customerId', 'name', 'actions'];
 
-  public newCustomer?: Customer = {};
+  public newCustomer: Customer = {};
   currentIndex = -1;
 
   constructor(private service: TimebillingService, public dialog: MatDialog) {
@@ -56,18 +57,54 @@ export class CustomersListComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  editCustomer(customer: Customer): void {
+    this.newCustomer = Object.assign(this.newCustomer, customer);
+    this.openDialog();
+  }
+
+  addCustomer(): void {
+    this.newCustomer = {};
+    this.openDialog();
+  }
+
+  async openDialog(): Promise<void> {
     const dialogRef = this.dialog.open(AddCustomerDialog, {
       data: this.newCustomer,
     });
+    // let a = await firstValueFrom(this.service.createCustomer(this.newCustomer));
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    let result = await firstValueFrom(dialogRef.afterClosed());
+
+
+    if (result) {
       this.newCustomer = result;
-      console.log(this.newCustomer);
-      //TODO: Validate input
-      //TODO: Send to API
-      //TODO: Add to customers
-    });
+      if (this.newCustomer!.name?.length !== 0) {
+
+        if (this.newCustomer?.customerId === undefined) {
+          this.newCustomer = await firstValueFrom(this.service.createCustomer(this.newCustomer));
+
+          // this.service.createCustomer(this.newCustomer!).subscribe({
+          //   next: (res) => {
+          //     this.refreshList();
+          //   },
+          //   error: (e) => console.error(e),
+          // })
+        }
+        else {
+          this.newCustomer = await firstValueFrom(this.service.updateCustomer(this.newCustomer));
+
+          // this.service.updateCustomer(this.newCustomer!).subscribe({
+          //   next: (res) => {
+          //     console.log("Update", res);
+          //     //this.people.push(this.newPerson!);
+          //     this.refreshList();
+          //   },
+          //   error: (e) => console.error(e),
+          // });
+        }
+      }
+    }
+    this.refreshList();
+    //TODO: Validate input
   }
 }

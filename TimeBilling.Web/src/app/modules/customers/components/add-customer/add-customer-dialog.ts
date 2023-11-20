@@ -17,7 +17,9 @@ export class AddCustomerDialog {
   constructor(
     public dialogRef: MatDialogRef<AddCustomerDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Customer,
-  ) { }
+  ) { 
+    console.log(data)
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

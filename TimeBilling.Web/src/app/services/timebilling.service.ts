@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Person } from '../models/person.model';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { Customer } from '../models/customer.model';
 import { Workload } from '../models/workload.model';
 import { environment } from '../environments/environment';
@@ -22,6 +22,17 @@ export class TimebillingService {
   createPerson(person: Person): Observable<Person> {
     const url = this.peopleUrl + '/CreatePerson';
     return this.http.post<Person>(url, person);
+    //awaitable
+  }
+
+  //Separat personservice
+  async CreatePerson2(person: Person) : Promise<Person>{
+    return await firstValueFrom(this.createPerson(person));
+  }
+
+  //ute i implementeringen, personResponse är en Person
+  async a(){
+    let personResponse = await this.CreatePerson2(new Person());
   }
 
   getPeople(): Observable<Person[]> {

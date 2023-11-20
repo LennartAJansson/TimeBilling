@@ -1,6 +1,8 @@
 ﻿namespace TimeBilling.Persistance.Context;
 
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +22,15 @@ internal class TimeBillingDbContext : DbContext, ITimeBillingDbContext
             .ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => base.OnConfiguring(optionsBuilder);
-    public virtual bool CreateDb() => throw new NotImplementedException();
-    public virtual bool DeleteDb() => throw new NotImplementedException();
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var item in ChangeTracker
+                   .Entries())
+                   //.Where(e => e.Entity is Customer && (e.State == EntityState.Added || e.State == EntityState.Modified)))
+                   //.Select(e => e.Entity as Customer))
+        {
+
+        }
+        return base.SaveChangesAsync(cancellationToken);
+    }
 }

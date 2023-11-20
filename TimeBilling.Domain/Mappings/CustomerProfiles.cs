@@ -13,6 +13,7 @@ public class CustomerProfiles : Profile
             .ForCtorParam("CustomerId", options => options.MapFrom("Id"));
         CreateMap<CreateCustomerCommand, Customer>();
         //TODO! Fix all mappings! UpdateCustomerCommand.CustomerId maps to Customer.Id
-        CreateMap<UpdateCustomerCommand, Customer>();
+        CreateMap<UpdateCustomerCommand, Customer>()
+            .ForMember("Id", options=>options.MapFrom("CustomerId"));
     }
 }

@@ -7,7 +7,7 @@
 <button mat-icon-button
         color="primary"
         class="btn-add"
-        (click)="openDialog()">
+        (click)="addCustomer()">
     <mat-icon>add</mat-icon>
 </button>
 
@@ -30,7 +30,7 @@
         <td mat-cell *matCellDef="let element">
             <button mat-icon-button
                     color="primary"
-                    [routerLink]="['/customer', element.customerId]">
+                    (click)="editCustomer(element)">
                 <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button

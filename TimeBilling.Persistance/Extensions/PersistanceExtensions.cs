@@ -9,7 +9,11 @@ public static class PersistanceExtensions
 {
     public static IServiceCollection AddPersistanceRegistrations(this IServiceCollection services, string connectionString)
     {
-        services.AddDbContext<ITimeBillingDbContext, TimeBillingDbContext>(builder=>builder.UseSqlServer(connectionString));
+        services.AddDbContext<ITimeBillingDbContext, TimeBillingDbContext>(builder =>
+        {
+            builder.UseSqlServer(connectionString);
+       
+        });
         services.AddTransient<ITimeBillingService, TimeBillingService>();
 
         return services;
