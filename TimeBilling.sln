@@ -29,11 +29,15 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "TimeBilling.Web", "TimeBill
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeBilling.Domain.UnitTests", "TimeBilling.Domain.UnitTests\TimeBilling.Domain.UnitTests.csproj", "{4D6CA4F5-C107-415F-944C-BFB286880786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Domain.UnitTests", "TimeBilling.Domain.UnitTests\TimeBilling.Domain.UnitTests.csproj", "{4D6CA4F5-C107-415F-944C-BFB286880786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeBilling.Persistance.UnitTests", "TimeBilling.Persistance.UnitTests\TimeBilling.Persistance.UnitTests.csproj", "{2FCEEFF2-4ADA-4DF7-9232-9CF49B215428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Persistance.UnitTests", "TimeBilling.Persistance.UnitTests\TimeBilling.Persistance.UnitTests.csproj", "{2FCEEFF2-4ADA-4DF7-9232-9CF49B215428}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeBilling.Api.UnitTests", "TimeBilling.Api.UnitTests\TimeBilling.Api.UnitTests.csproj", "{31CFDC63-57B2-44DD-878F-E224ED0A95AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Api.UnitTests", "TimeBilling.Api.UnitTests\TimeBilling.Api.UnitTests.csproj", "{31CFDC63-57B2-44DD-878F-E224ED0A95AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeBilling.Maui", "TimeBilling.Maui\TimeBilling.Maui.csproj", "{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{99311B25-9433-4B04-B78B-9953A62EFB35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,16 @@ Global
 		{31CFDC63-57B2-44DD-878F-E224ED0A95AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31CFDC63-57B2-44DD-878F-E224ED0A95AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31CFDC63-57B2-44DD-878F-E224ED0A95AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{99311B25-9433-4B04-B78B-9953A62EFB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99311B25-9433-4B04-B78B-9953A62EFB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99311B25-9433-4B04-B78B-9953A62EFB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99311B25-9433-4B04-B78B-9953A62EFB35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +119,8 @@ Global
 		{4D6CA4F5-C107-415F-944C-BFB286880786} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
 		{2FCEEFF2-4ADA-4DF7-9232-9CF49B215428} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
 		{31CFDC63-57B2-44DD-878F-E224ED0A95AE} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
+		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318} = {0F8653A9-0596-4404-954B-3E10533F21EA}
+		{99311B25-9433-4B04-B78B-9953A62EFB35} = {0F8653A9-0596-4404-954B-3E10533F21EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5682B5B3-C4A8-412D-8AA2-028EDDDE9672}
