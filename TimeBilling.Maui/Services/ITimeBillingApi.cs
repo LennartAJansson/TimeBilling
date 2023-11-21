@@ -6,10 +6,7 @@
 using Refit;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using System.Threading;
 using System.Threading.Tasks;
-
-using TimeBilling.Maui.Models;
 
 namespace GeneratedCode
 {
@@ -18,71 +15,71 @@ namespace GeneratedCode
     {
         [Headers("Accept: application/json")]
         [Get("/Customers/GetCustomers")]
-        Task<ICollection<CustomerResponse>> GetCustomers(CancellationToken cancellationToken = default);
+        Task<ICollection<CustomerResponse>> GetCustomers();
 
         [Headers("Accept: application/json")]
         [Get("/Customers/GetCustomer/{customerId}")]
-        Task<CustomerResponse> GetCustomer(int customerId, CancellationToken cancellationToken = default);
+        Task<CustomerResponse> GetCustomer(int customerId);
 
         [Headers("Accept: application/json")]
         [Post("/Customers/CreateCustomer")]
-        Task<CustomerResponse> CreateCustomer([Body] CreateCustomerCommand body, CancellationToken cancellationToken = default);
+        Task<CustomerResponse> CreateCustomer([Body] CreateCustomerCommand body);
 
         [Headers("Accept: application/json")]
         [Put("/Customers/UpdateCustomer")]
-        Task<CustomerResponse> UpdateCustomer([Body] UpdateCustomerCommand body, CancellationToken cancellationToken = default);
+        Task<CustomerResponse> UpdateCustomer([Body] UpdateCustomerCommand body);
 
         [Headers("Accept: application/json")]
         [Delete("/Customers/DeleteCustomer/{customerId}")]
-        Task<CustomerResponse> DeleteCustomer(int customerId, CancellationToken cancellationToken = default);
+        Task<CustomerResponse> DeleteCustomer(int customerId);
 
         [Headers("Accept: application/json")]
         [Get("/People/GetPeople")]
-        Task<ICollection<PersonResponse>> GetPeople(CancellationToken cancellationToken = default);
+        Task<ICollection<PersonResponse>> GetPeople();
 
         [Headers("Accept: application/json")]
         [Get("/People/GetPerson/{personId}")]
-        Task<PersonResponse> GetPerson(int personId, CancellationToken cancellationToken = default);
+        Task<PersonResponse> GetPerson(int personId);
 
         [Headers("Accept: application/json")]
         [Post("/People/CreatePerson")]
-        Task<PersonResponse> CreatePerson([Body] CreatePersonCommand body, CancellationToken cancellationToken = default);
+        Task<PersonResponse> CreatePerson([Body] CreatePersonCommand body);
 
         [Headers("Accept: application/json")]
         [Put("/People/UpdatePerson")]
-        Task<PersonResponse> UpdatePerson([Body] UpdatePersonCommand body, CancellationToken cancellationToken = default);
+        Task<PersonResponse> UpdatePerson([Body] UpdatePersonCommand body);
 
         [Headers("Accept: application/json")]
         [Delete("/People/DeletePerson/{personId}")]
-        Task<PersonResponse> DeletePerson(int personId, CancellationToken cancellationToken = default);
+        Task<PersonResponse> DeletePerson(int personId);
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkloads")]
-        Task<ICollection<WorkloadResponse>> GetWorkloads(CancellationToken cancellationToken = default);
+        Task<ICollection<WorkloadResponse>> GetWorkloads();
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkload/{workloadId}")]
-        Task<WorkloadResponse> GetWorkload(int workloadId, CancellationToken cancellationToken = default);
+        Task<WorkloadResponse> GetWorkload(int workloadId);
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkloadsByCustomer/{customerId}")]
-        Task<ICollection<WorkloadResponse>> GetWorkloadsByCustomer(int customerId, CancellationToken cancellationToken = default);
+        Task<ICollection<WorkloadResponse>> GetWorkloadsByCustomer(int customerId);
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkloadsByPerson/{personId}")]
-        Task<ICollection<WorkloadResponse>> GetWorkloadsByPerson(int personId, CancellationToken cancellationToken = default);
+        Task<ICollection<WorkloadResponse>> GetWorkloadsByPerson(int personId);
 
         [Headers("Accept: application/json")]
         [Post("/Workloads/BeginWorkload")]
-        Task<WorkloadResponse> BeginWorkload([Body] BeginWorkloadCommand body, CancellationToken cancellationToken = default);
+        Task<WorkloadResponse> BeginWorkload([Body] BeginWorkloadCommand body);
 
         [Headers("Accept: application/json")]
         [Put("/Workloads/EndWorkload")]
-        Task<WorkloadResponse> EndWorkload([Body] EndWorkloadCommand body, CancellationToken cancellationToken = default);
+        Task<WorkloadResponse> EndWorkload([Body] EndWorkloadCommand body);
 
         [Headers("Accept: application/json")]
         [Delete("/Workloads/DeleteWorkload/{workloadId}")]
-        Task<WorkloadResponse> DeleteWorkload(int workloadId, CancellationToken cancellationToken = default);
+        Task<WorkloadResponse> DeleteWorkload(int workloadId);
 
 
     }
