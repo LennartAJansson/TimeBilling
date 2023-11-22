@@ -6,7 +6,7 @@
              x:Class="TimeBilling.App.Views.PeopleView"
              x:DataType="vm:PeopleViewModel">
     <VerticalStackLayout>
-        <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
+        <Label  Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
         <ListView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
             <ListView.ItemTemplate>
                 <DataTemplate>

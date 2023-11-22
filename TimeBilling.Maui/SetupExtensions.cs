@@ -34,6 +34,8 @@ namespace TimeBilling.Maui
             _ = services.AddSingleton<App>();
             _ = services.AddSingleton<AppShell>();
             _ = services.AddSingleton<MainPage, MainPageViewModel>();
+            _ = services.AddSingleton<PeoplePage, PeoplePageViewModel>();
+            _ = services.AddSingleton<PersonPage, PersonPageViewModel>();
             services.AddTransient<ITimeBillingService, TimeBillingService>();
             services.AddAutoMapper(typeof(SetupExtensions).Assembly);
 

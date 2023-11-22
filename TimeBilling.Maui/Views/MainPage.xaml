@@ -9,14 +9,6 @@
              >
 
     <VerticalStackLayout>
-        <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
-        <ListView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Name}" x:DataType="m:Person"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </VerticalStackLayout>
 
 </ContentPage>

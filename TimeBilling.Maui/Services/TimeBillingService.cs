@@ -21,7 +21,9 @@ namespace TimeBilling.Maui.Services
         {
             var peopleResponse = await api.GetPeople();
 
-            return peopleResponse.Select(p=>mapper.Map<Person>(p)).ToList();
+            var result = peopleResponse.Select(p=>mapper.Map<Person>(p)).ToList();
+            
+            return result;
         }
     }
 }
