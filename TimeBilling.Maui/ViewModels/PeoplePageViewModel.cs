@@ -5,6 +5,7 @@ using TimeBilling.Maui.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using TimeBilling.Maui.Services;
+using TimeBilling.Maui.Views;
 
 public partial class PeoplePageViewModel : ObservableObject
 {
@@ -16,6 +17,7 @@ public partial class PeoplePageViewModel : ObservableObject
     partial void OnSelectedPersonChanged(Person? value)
     {
         var message = new SelectedPersonChanged(value);
+        Shell.Current.GoToAsync("//Person");
         WeakReferenceMessenger.Default.Send<SelectedPersonChanged>(message);
     }
 

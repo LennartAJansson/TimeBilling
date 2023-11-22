@@ -11,7 +11,8 @@
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+        Route="MainPage"
+        />
 
     <ShellContent
         Title="People"
@@ -22,4 +23,6 @@
         Title="Person"
         ContentTemplate="{DataTemplate views:PersonPage}"
         Route="Person" />
+
+
 </Shell>
