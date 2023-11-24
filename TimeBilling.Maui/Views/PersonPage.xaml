@@ -8,5 +8,6 @@
     <VerticalStackLayout>
         <Label Text="{Binding SelectedPerson.PersonId}" FontSize="Large" FontAttributes="Bold"/>
         <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
+        <Button Command="{Binding GoBackCommand}" Text="Go back" WidthRequest="80"/>
     </VerticalStackLayout>
 </ContentPage>

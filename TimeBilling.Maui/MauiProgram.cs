@@ -1,32 +1,34 @@
 ﻿namespace TimeBilling.Maui;
 
 using CommunityToolkit.Maui;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 using Microsoft.Extensions.Logging;
-using TimeBilling.Maui.ViewModels;
-using TimeBilling.Maui.Views;
+using Microsoft.Maui.Hosting;
 
 public static class MauiProgram
 {
-    public static MauiApp CreateMauiApp()
-    {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .UseMauiCommunityToolkit()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+  public static MauiApp CreateMauiApp()
+  {
+    MauiAppBuilder builder = MauiApp.CreateBuilder();
+    builder
+        .UseMauiApp<App>()
+        .UseMauiCommunityToolkit()
+        .ConfigureFonts(fonts =>
+        {
+          fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+          fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+        });
 
-        _ = builder.Services.Setup();
-
+    _ = builder.Services.Setup();
 
 #if DEBUG
-        builder.Logging.AddDebug();
+    builder.Logging.AddDebug();
 #endif
 
-        return builder.Build();
-    }
+    MauiApp mauiApp = builder.Build();
+    Ioc.Default.ConfigureServices(mauiApp.Services);
+
+    return mauiApp;
+  }
 }

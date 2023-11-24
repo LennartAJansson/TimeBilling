@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Maui;
+
+using GeneratedCode;
+
 using Refit;
+
 using TimeBilling.Maui.Services;
 using TimeBilling.Maui.ViewModels;
 using TimeBilling.Maui.Views;
-using GeneratedCode;
-using CommunityToolkit.Maui;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace TimeBilling.Maui
 {
@@ -36,8 +33,8 @@ namespace TimeBilling.Maui
             _ = services.AddSingleton<MainPage, MainPageViewModel>();
             _ = services.AddSingleton<PeoplePage, PeoplePageViewModel>();
             _ = services.AddSingleton<PersonPage, PersonPageViewModel>();
-            services.AddTransient<ITimeBillingService, TimeBillingService>();
-            services.AddAutoMapper(typeof(SetupExtensions).Assembly);
+            _ = services.AddTransient<ITimeBillingService, TimeBillingService>();
+            _ = services.AddAutoMapper(typeof(SetupExtensions).Assembly);
 
             return services;
         }

@@ -1,10 +1,11 @@
 ﻿namespace TimeBilling.Maui.ViewModels;
-using TimeBilling.Maui.Models;
-
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
-public partial class PersonPageViewModel : ObservableRecipient, IRecipient<SelectedPersonChanged>, IRecipient<CurrentUserChanged>
+using TimeBilling.Maui.Models;
+
+public partial class PersonPageViewModel : ObservableRecipient, IRecipient<SelectedPersonChanged>
 {
     [ObservableProperty]
     private Person? selectedPerson;
@@ -14,6 +15,11 @@ public partial class PersonPageViewModel : ObservableRecipient, IRecipient<Selec
         Messenger.RegisterAll(this);
     }
 
+    [RelayCommand]
+    public void GoBack()
+    {
+        Shell.Current.Navigation.PopAsync();
+    }
+
     public void Receive(SelectedPersonChanged message) => SelectedPerson = message.Value;
-    public void Receive(CurrentUserChanged message) => throw new NotImplementedException();
 }

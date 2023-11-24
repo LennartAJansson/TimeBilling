@@ -6,23 +6,21 @@
     xmlns:local="clr-namespace:TimeBilling.Maui"
     xmlns:views="clr-namespace:TimeBilling.Maui.Views"
     Shell.FlyoutBehavior="Flyout"
-    Title="TimeBilling.Maui">
+    Title="Ingrids Maui">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage"
-        />
+        Route="Main"/>
 
     <ShellContent
         Title="People"
         ContentTemplate="{DataTemplate views:PeoplePage}"
-        Route="People" />
+        Route="People"/>
 
-    <ShellContent
+    <!--<ShellContent
         Title="Person"
         ContentTemplate="{DataTemplate views:PersonPage}"
-        Route="Person" />
-
+        Route="Person" />-->
 
 </Shell>
