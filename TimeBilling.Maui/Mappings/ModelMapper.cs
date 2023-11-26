@@ -1,4 +1,6 @@
-﻿using System;
+﻿namespace TimeBilling.Maui.Mappings;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +8,11 @@ using System.Threading.Tasks;
 
 using AutoMapper;
 
-using TimeBilling.Maui.Models;
 using GeneratedCode;
 
-namespace TimeBilling.Maui.Mappings
+using TimeBilling.Maui.Models;
+
+public class ModelMapper : Profile
 {
-    public class ModelMapper: Profile
-    {
-        public ModelMapper()
-        {
-            CreateMap<PersonResponse, Person>();
-        }
-    }
+  public ModelMapper() => CreateMap<PersonResponse, Person>();
 }
