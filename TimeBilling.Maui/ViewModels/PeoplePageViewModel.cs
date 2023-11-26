@@ -1,6 +1,7 @@
 ﻿namespace TimeBilling.Maui.ViewModels;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
+using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 
@@ -10,13 +11,13 @@ using TimeBilling.Maui.Services;
 public partial class PeoplePageViewModel : ObservableObject
 {
   [ObservableProperty]
-  private ICollection<Person> people = new List<Person>();
+  private ObservableCollection<Person> people = [];
 
   [ObservableProperty]
   private Person? selectedPerson;
   partial void OnSelectedPersonChanged(Person? value)
   {
-    var message = new SelectedPersonChanged(value);
+    var message = new SelectedPersonChanged(value!);
     //var page = Ioc.Default.GetRequiredService<PersonPage>();
     //_ = Shell.Current.Navigation.PushModalAsync(page);
     //_ = Shell.Current.Navigation.PushAsync(page);
@@ -31,7 +32,7 @@ public partial class PeoplePageViewModel : ObservableObject
     this.service = service;
     _ = Task.Run(async () =>
     {
-      People = await service.GetPeople();
+      People = (await service.GetPeople()).ToObservableCollection();
     });
   }
 }

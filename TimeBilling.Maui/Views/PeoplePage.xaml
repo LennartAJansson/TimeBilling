@@ -12,7 +12,16 @@
         <ListView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:Person">
-                    <TextCell Text="{Binding Name}"/>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding PersonId}" WidthRequest="40"  x:DataType="m:Person"/>
+                            <Label Grid.Column="1" Text="{Binding Name}" WidthRequest="120"  x:DataType="m:Person"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

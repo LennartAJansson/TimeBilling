@@ -7,19 +7,13 @@ using TimeBilling.Maui.Models;
 
 public partial class PersonPageViewModel : ObservableRecipient, IRecipient<SelectedPersonChanged>
 {
-    [ObservableProperty]
-    private Person? selectedPerson;
+  [ObservableProperty]
+  private Person? selectedPerson;
 
-    public PersonPageViewModel()
-    {
-        Messenger.RegisterAll(this);
-    }
+  public PersonPageViewModel() => Messenger.RegisterAll(this);
 
-    [RelayCommand]
-    public void GoBack()
-    {
-        Shell.Current.Navigation.PopAsync();
-    }
+  [RelayCommand]
+  public static void GoBack() => Shell.Current.Navigation.PopAsync();
 
-    public void Receive(SelectedPersonChanged message) => SelectedPerson = message.Value;
+  public void Receive(SelectedPersonChanged message) => SelectedPerson = message.Value;
 }

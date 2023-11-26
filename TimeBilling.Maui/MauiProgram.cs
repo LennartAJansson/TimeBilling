@@ -1,6 +1,7 @@
 ﻿namespace TimeBilling.Maui;
 
 using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Markup;
 using CommunityToolkit.Mvvm.DependencyInjection;
 
 using Microsoft.Extensions.Logging;
@@ -13,7 +14,7 @@ public static class MauiProgram
     MauiAppBuilder builder = MauiApp.CreateBuilder();
     builder
         .UseMauiApp<App>()
-        .UseMauiCommunityToolkit()
+        .UseMauiCommunityToolkit().UseMauiCommunityToolkitMarkup()
         .ConfigureFonts(fonts =>
         {
           fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

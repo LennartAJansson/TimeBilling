@@ -23,4 +23,9 @@
         ContentTemplate="{DataTemplate views:PersonPage}"
         Route="Person" />-->
 
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="Login"/>
+
 </Shell>
