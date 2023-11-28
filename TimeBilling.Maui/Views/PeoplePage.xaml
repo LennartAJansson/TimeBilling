@@ -8,11 +8,22 @@
              x:DataType="vm:PeoplePageViewModel">
 
     <VerticalStackLayout>
-        <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
+        <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold">
+        </Label>
+        
         <ListView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:Person">
-                    <TextCell Text="{Binding Name}"/>
+                    <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding PersonId}"/>
+                        <Label Grid.Column="1" Text="{Binding Name}"/>
+                    </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
