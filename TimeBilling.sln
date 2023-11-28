@@ -35,9 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Persistance.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Api.UnitTests", "TimeBilling.Api.UnitTests\TimeBilling.Api.UnitTests.csproj", "{31CFDC63-57B2-44DD-878F-E224ED0A95AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeBilling.Maui", "TimeBilling.Maui\TimeBilling.Maui.csproj", "{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{99311B25-9433-4B04-B78B-9953A62EFB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Maui", "TimeBilling.Maui\TimeBilling.Maui.csproj", "{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,10 +97,6 @@ Global
 		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{99311B25-9433-4B04-B78B-9953A62EFB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99311B25-9433-4B04-B78B-9953A62EFB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99311B25-9433-4B04-B78B-9953A62EFB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99311B25-9433-4B04-B78B-9953A62EFB35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,7 +114,6 @@ Global
 		{2FCEEFF2-4ADA-4DF7-9232-9CF49B215428} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
 		{31CFDC63-57B2-44DD-878F-E224ED0A95AE} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
 		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318} = {0F8653A9-0596-4404-954B-3E10533F21EA}
-		{99311B25-9433-4B04-B78B-9953A62EFB35} = {0F8653A9-0596-4404-954B-3E10533F21EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5682B5B3-C4A8-412D-8AA2-028EDDDE9672}
