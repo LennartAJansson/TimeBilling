@@ -42,7 +42,6 @@ public partial class PersonPageViewModel : ObservableRecipient, IRecipient<Selec
     _ = WeakReferenceMessenger.Default.Send(message);
 
     CancellationTokenSource cancellationTokenSource = new();
-
     string text = "Person saved";
     ToastDuration duration = ToastDuration.Long;
     double fontSize = 14;

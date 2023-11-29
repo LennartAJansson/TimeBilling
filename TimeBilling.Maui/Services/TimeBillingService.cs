@@ -4,6 +4,7 @@ using AutoMapper;
 
 using GeneratedCode;
 
+using TimeBilling.Contracts;
 using TimeBilling.Maui.Models;
 
 public class TimeBillingService : ITimeBillingService
