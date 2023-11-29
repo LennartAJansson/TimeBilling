@@ -33,7 +33,6 @@ internal class LoginPage : ContentPage
 
                 new Entry()
                     .Placeholder("Username")
-                    .Text("Username")
                     .Row(Row.Username)
                     .Column(Column.UserInput),
 

@@ -10,5 +10,8 @@ public partial class AppShell : Shell
     InitializeComponent();
   }
 
-  private void InitRoutes() => Routing.RegisterRoute("People/Person", typeof(PersonPage));
+    private void InitRoutes()
+    {
+        Routing.RegisterRoute("People/Person", typeof(PersonPage));
+    }
 }

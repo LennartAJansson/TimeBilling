@@ -21,12 +21,7 @@ public partial class PersonPageViewModel : ObservableRecipient, IRecipient<Selec
 {
   [ObservableProperty]
   private Person? selectedPerson;
-
-  [ObservableProperty]
-  private float test = 0.4567f;
   private readonly ITimeBillingService service;
-
-  //new() { Id = Guid.NewGuid(), Name = "Funkar inte" };
 
   public PersonPageViewModel(ITimeBillingService service)
   {
@@ -56,5 +51,5 @@ public partial class PersonPageViewModel : ObservableRecipient, IRecipient<Selec
   [RelayCommand]
   public void GoBack() => Shell.Current.Navigation.PopAsync();
 
-  public void Receive(SelectedPersonChanged message) => SelectedPerson = Person.Create(message.Value);
+  public void Receive(SelectedPersonChanged message) => SelectedPerson = message.Value;
 }
