@@ -33,7 +33,7 @@ internal class LoginPage : ContentPage
 
                 new Entry()
                     .Placeholder("Username")
-                    .Text("{Binding vm.Username}")
+                    .Text("Username")
                     .Row(Row.Username)
                     .Column(Column.UserInput),
 
@@ -44,11 +44,13 @@ internal class LoginPage : ContentPage
 
                 new Entry { IsPassword = true }
                     .Placeholder("Password")
+                    .Text("Password")
                     //.SetBinding(Entry.TextProperty, vm.Password)
                     .Row(Row.Password)
                     .Column(Column.UserInput),
 
                 new Button()
+                    //.Command.Execute(vm.OkCommand)
                     .Text("Submit")
                     .Row(Row.Submit)
                     .ColumnSpan(2)

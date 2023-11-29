@@ -27,5 +27,4 @@
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="Login"/>
-
 </Shell>

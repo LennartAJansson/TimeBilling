@@ -1,19 +1,12 @@
-﻿using System;
+﻿namespace TimeBilling.Maui.Services;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
-using AutoMapper;
-
-using GeneratedCode;
 
 using TimeBilling.Maui.Models;
 
-namespace TimeBilling.Maui.Services
+public interface ITimeBillingService
 {
-    public interface ITimeBillingService
-    {
-        Task<ICollection<Person>> GetPeople();
-    }
+  Task<ICollection<Person>> GetPeople();
+  Task UpdatePerson(Person? selectedPerson);
 }
