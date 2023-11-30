@@ -1,7 +1,4 @@
 ﻿namespace TimeBilling.Maui.ViewModels;
-using System.Collections.ObjectModel;
-
-using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 
@@ -11,7 +8,7 @@ using TimeBilling.Maui.Services;
 public partial class PeoplePageViewModel : ObservableRecipient, IRecipient<RefreshPeopleList>
 {
   [ObservableProperty]
-  private ObservableCollection<Person> people = [];
+  private ICollection<Person> people = new List<Person>();
 
   [ObservableProperty]
   private Person? selectedPerson;
@@ -24,22 +21,19 @@ public partial class PeoplePageViewModel : ObservableRecipient, IRecipient<Refre
 
   public void Receive(RefreshPeopleList message)
   {
-    _ = Task.Run(async () =>
-        {
-          People = (await service.GetPeople()).ToObservableCollection();
-        });
+    People.Where(p => p.PersonId == message.Value.PersonId).First().Name = message.Value.Name;
     SelectedPerson = null;
   }
 
-  private readonly ITimeBillingService service;
+  private readonly IPeopleService service;
 
-  public PeoplePageViewModel(ITimeBillingService service)
+  public PeoplePageViewModel(IPeopleService service)
   {
     this.service = service;
     Messenger.RegisterAll(this);
     _ = Task.Run(async () =>
     {
-      People = (await service.GetPeople()).ToObservableCollection();
+      People = (await service.GetPeople()).ToList();
     });
   }
 }

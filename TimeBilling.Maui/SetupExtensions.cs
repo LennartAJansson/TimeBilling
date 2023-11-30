@@ -22,7 +22,7 @@ public static class SetupExtensions
         })
         .ConfigureHttpClient(c =>
         {
-          c.Timeout = System.TimeSpan.FromSeconds(300);
+          c.Timeout = TimeSpan.FromSeconds(300);
           c.BaseAddress = new Uri("https://localhost:7107/");
           //c.BaseAddress = new Uri(configuration.GetValue<string>("AuthUrl")
           //    ?? throw new ArgumentException("No AuthUrl found in configuration"));
@@ -32,9 +32,19 @@ public static class SetupExtensions
     _ = services.AddSingleton<AppShell>();
     _ = services.AddSingleton<MainPage, MainPageViewModel>();
     _ = services.AddSingleton<LoginPage, LoginPageViewModel>();
+
     _ = services.AddSingleton<PeoplePage, PeoplePageViewModel>();
     _ = services.AddSingleton<PersonPage, PersonPageViewModel>();
-    _ = services.AddTransient<ITimeBillingService, TimeBillingService>();
+    _ = services.AddTransient<IPeopleService, PeopleService>();
+
+    _ = services.AddSingleton<CustomersPage, CustomersPageViewModel>();
+    _ = services.AddSingleton<CustomerPage, CustomerPageViewModel>();
+    _ = services.AddTransient<ICustomerService, CustomerService>();
+
+    _ = services.AddSingleton<WorkloadsPage, WorkloadsPageViewModel>();
+    _ = services.AddSingleton<WorkloadPage, WorkloadPageViewModel>();
+    _ = services.AddTransient<IWorkloadService, WorkloadService>();
+
     _ = services.AddAutoMapper(typeof(SetupExtensions).Assembly);
 
     return services;

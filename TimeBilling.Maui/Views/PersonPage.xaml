@@ -6,15 +6,15 @@
              Title="PersonPage"
              x:DataType="vm:PersonPageViewModel">
     <VerticalStackLayout>
-        <HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
             <Label Text="PersonId:" FontSize="Large" FontAttributes="Bold"/>
             <Entry Text="{Binding SelectedPerson.PersonId}"/>
         </HorizontalStackLayout>
-        <HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
             <Label Text="Name:" FontSize="Large" FontAttributes="Bold"/>
             <Entry Text="{Binding SelectedPerson.Name}"/>
         </HorizontalStackLayout>
-        <HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
             <Button Command="{Binding SaveAndExitCommand}" Text="Ok" WidthRequest="80"/>
             <Button Command="{Binding GoBackCommand}" Text="Cancel" WidthRequest="80"/>
         </HorizontalStackLayout>
