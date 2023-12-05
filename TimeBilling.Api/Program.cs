@@ -24,10 +24,13 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder
 
 
 WebApplication app = builder.Build();
+
+app.ConfigurePersistance();
+
 if (app.Environment.IsDevelopment())
 {
-    _ = app.UseSwagger();
-    _ = app.UseSwaggerUI();
+  _ = app.UseSwagger();
+  _ = app.UseSwaggerUI();
 }
 app.UseCors();
 
