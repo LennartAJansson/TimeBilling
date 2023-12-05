@@ -6,6 +6,3 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
-images:
-- name: registry:5000/timebillingweb
-  newTag: 0.0.0-dev.10
