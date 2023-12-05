@@ -35,6 +35,42 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Api.UnitTests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Maui", "TimeBilling.Maui\TimeBilling.Maui.csproj", "{D368F0CD-D0DD-4ACF-BE79-298B8AB41318}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{BA48A816-F983-4095-B239-E9429EC86250}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\BuildWithVersioning.ps1 = deploy\BuildWithVersioning.ps1
+		deploy\DeployWithVersioning.ps1 = deploy\DeployWithVersioning.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "timebilling", "timebilling", "{9F6034F7-8CD7-4173-B6DD-2D7C2BE3FF1B}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\timebilling\deployment.yaml = deploy\timebilling\deployment.yaml
+		deploy\timebilling\ingress.yaml = deploy\timebilling\ingress.yaml
+		deploy\timebilling\kustomization.yaml = deploy\timebilling\kustomization.yaml
+		deploy\timebilling\namespace.yaml = deploy\timebilling\namespace.yaml
+		deploy\timebilling\service.yaml = deploy\timebilling\service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "timebillingapi", "timebillingapi", "{3136E5B2-2C0A-4C6E-B38A-70773D5E30EC}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\timebillingapi\configmap.yaml = deploy\timebillingapi\configmap.yaml
+		deploy\timebillingapi\create-sealed-secret.ps1 = deploy\timebillingapi\create-sealed-secret.ps1
+		deploy\timebillingapi\create-sealed-secret.sh = deploy\timebillingapi\create-sealed-secret.sh
+		deploy\timebillingapi\deployment.yaml = deploy\timebillingapi\deployment.yaml
+		deploy\timebillingapi\ingress.yaml = deploy\timebillingapi\ingress.yaml
+		deploy\timebillingapi\kustomization.yaml = deploy\timebillingapi\kustomization.yaml
+		deploy\timebillingapi\namespace.yaml = deploy\timebillingapi\namespace.yaml
+		deploy\timebillingapi\persistentvolume.yaml = deploy\timebillingapi\persistentvolume.yaml
+		deploy\timebillingapi\persistentvolumeclaim.yaml = deploy\timebillingapi\persistentvolumeclaim.yaml
+		deploy\timebillingapi\secret.yaml = deploy\timebillingapi\secret.yaml
+		deploy\timebillingapi\service.yaml = deploy\timebillingapi\service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "secrets", "secrets", "{A5FA2DA1-DD1E-4427-8ED4-00A14B4C0002}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\timebillingapi\secrets\ConnectionStrings__TimeBillingDb. = deploy\timebillingapi\secrets\ConnectionStrings__TimeBillingDb.
+		deploy\timebillingapi\secrets\ConnectionStrings__TimeBillingIdentity. = deploy\timebillingapi\secrets\ConnectionStrings__TimeBillingIdentity.
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +141,9 @@ Global
 		{2FCEEFF2-4ADA-4DF7-9232-9CF49B215428} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
 		{31CFDC63-57B2-44DD-878F-E224ED0A95AE} = {43BBC256-8F53-4B4D-B606-DC8BEC1FF59A}
 		{D368F0CD-D0DD-4ACF-BE79-298B8AB41318} = {0F8653A9-0596-4404-954B-3E10533F21EA}
+		{9F6034F7-8CD7-4173-B6DD-2D7C2BE3FF1B} = {BA48A816-F983-4095-B239-E9429EC86250}
+		{3136E5B2-2C0A-4C6E-B38A-70773D5E30EC} = {BA48A816-F983-4095-B239-E9429EC86250}
+		{A5FA2DA1-DD1E-4427-8ED4-00A14B4C0002} = {3136E5B2-2C0A-4C6E-B38A-70773D5E30EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5682B5B3-C4A8-412D-8AA2-028EDDDE9672}

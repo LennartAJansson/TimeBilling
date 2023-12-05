@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: timebillingapi-configmap
+data:
+  DOTNET_ENVIRONMENT: "Production"
+  ASPNETCORE_ENVIRONMENT: "Production"

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TimeBilling.Maui.ViewModels"
              x:Class="TimeBilling.Maui.Views.WorkloadPage"
-             Title="WorkloadPage">
+             Title="WorkloadPage"
+             x:DataType="vm:WorkloadPageViewModel">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <HorizontalStackLayout Margin="10">
+            <Label Text="WorkloadId:" FontSize="Large" FontAttributes="Bold"/>
+            <Entry Text="{Binding SelectedWorkload.WorkloadId}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
+            <Label Text="Begin:" FontSize="Large" FontAttributes="Bold"/>
+            <Entry Text="{Binding SelectedWorkload.Begin}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
+            <Label Text="End:" FontSize="Large" FontAttributes="Bold"/>
+            <Entry Text="{Binding SelectedWorkload.End}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
+            <Button Command="{Binding SaveAndExitCommand}" Text="Ok" WidthRequest="80"/>
+            <Button Command="{Binding GoBackCommand}" Text="Cancel" WidthRequest="80"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -22,7 +22,19 @@ public partial class CustomersPageViewModel : ObservableRecipient, IRecipient<Re
 
   private readonly ICustomerService service;
 
-  public CustomersPageViewModel(ICustomerService service) => this.service = service;
+  public CustomersPageViewModel(ICustomerService service)
+  {
+    this.service = service;
+    Messenger.RegisterAll(this);
+    _ = Task.Run(async () =>
+    {
+      Customers = (await service.GetCustomers()).ToList();
+    });
+  }
 
-  public void Receive(RefreshCustomersList message) => throw new NotImplementedException();
+  public void Receive(RefreshCustomersList message)
+  {
+    Customers.Where(c => c.CustomerId == message.Value.CustomerId).First().Name = message.Value.Name;
+    SelectedCustomer = null;
+  }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Person } from '../models/person.model';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Customer } from '../models/customer.model';
 import { Workload } from '../models/workload.model';
 import { environment } from '../environments/environment';
@@ -38,6 +38,15 @@ export class TimebillingService {
   getPeople(): Observable<Person[]> {
     const url = this.peopleUrl + "/GetPeople";
     return this.http.get<Person[]>(url);
+  }
+
+  async getPeople2(): Promise<Person[]> {
+    const url = this.peopleUrl + "/GetPeople";
+    return await lastValueFrom(this.http.get<Person[]>(url));
+  }
+
+  async b(){
+    let peopleResponse = await this.getPeople2();
   }
 
   getPerson(personId: number): Observable<Person> {

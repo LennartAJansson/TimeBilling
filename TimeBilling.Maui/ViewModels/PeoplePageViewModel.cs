@@ -19,12 +19,6 @@ public partial class PeoplePageViewModel : ObservableRecipient, IRecipient<Refre
     _ = WeakReferenceMessenger.Default.Send(message);
   }
 
-  public void Receive(RefreshPeopleList message)
-  {
-    People.Where(p => p.PersonId == message.Value.PersonId).First().Name = message.Value.Name;
-    SelectedPerson = null;
-  }
-
   private readonly IPeopleService service;
 
   public PeoplePageViewModel(IPeopleService service)
@@ -35,5 +29,11 @@ public partial class PeoplePageViewModel : ObservableRecipient, IRecipient<Refre
     {
       People = (await service.GetPeople()).ToList();
     });
+  }
+
+  public void Receive(RefreshPeopleList message)
+  {
+    People.Where(p => p.PersonId == message.Value.PersonId).First().Name = message.Value.Name;
+    SelectedPerson = null;
   }
 }

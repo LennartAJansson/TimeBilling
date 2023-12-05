@@ -82,7 +82,7 @@ export class CustomersListComponent implements OnInit {
 
         if (this.newCustomer?.customerId === undefined) {
           this.newCustomer = await firstValueFrom(this.service.createCustomer(this.newCustomer));
-
+            //lastValueFrom
           // this.service.createCustomer(this.newCustomer!).subscribe({
           //   next: (res) => {
           //     this.refreshList();

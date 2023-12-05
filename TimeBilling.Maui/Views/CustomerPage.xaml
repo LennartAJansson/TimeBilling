@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TimeBilling.Maui.ViewModels"
              x:Class="TimeBilling.Maui.Views.CustomerPage"
-             Title="CustomerPage">
+             Title="CustomerPage"
+             x:DataType="vm:CustomerPageViewModel">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <HorizontalStackLayout Margin="10">
+            <Label Text="CustomerId:" FontSize="Large" FontAttributes="Bold"/>
+            <Entry Text="{Binding SelectedCustomer.CustomerId}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
+            <Label Text="Name:" FontSize="Large" FontAttributes="Bold"/>
+            <Entry Text="{Binding SelectedCustomer.Name}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="10">
+            <Button Command="{Binding SaveAndExitCommand}" Text="Ok" WidthRequest="80"/>
+            <Button Command="{Binding GoBackCommand}" Text="Cancel" WidthRequest="80"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

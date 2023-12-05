@@ -24,6 +24,8 @@ public partial class PersonPageViewModel : ObservableRecipient, IRecipient<Selec
     this.service = service;
   }
 
+  public void Receive(SelectedPersonChanged message) => SelectedPerson = message.Value;
+
   [RelayCommand]
   public void SaveAndExit()
   {
@@ -51,6 +53,4 @@ public partial class PersonPageViewModel : ObservableRecipient, IRecipient<Selec
 
   [RelayCommand]
   public void GoBack() => Shell.Current.Navigation.PopAsync();
-
-  public void Receive(SelectedPersonChanged message) => SelectedPerson = message.Value;
 }

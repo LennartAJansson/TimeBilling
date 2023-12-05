@@ -1,6 +1,7 @@
 ﻿namespace TimeBilling.Maui.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
 using TimeBilling.Maui.Models;
@@ -13,7 +14,27 @@ public partial class WorkloadPageViewModel : ObservableRecipient, IRecipient<Sel
 
   private readonly IWorkloadService service;
 
-  public WorkloadPageViewModel(IWorkloadService service) => this.service = service;
+  public WorkloadPageViewModel(IWorkloadService service)
+  {
+    Messenger.RegisterAll(this);
+    this.service = service;
+  }
 
-  public void Receive(SelectedWorkloadChanged message) => throw new NotImplementedException();
+  public void Receive(SelectedWorkloadChanged message) => SelectedWorkload = message.Value;
+
+  [RelayCommand]
+  public void SaveAndExit()
+  {
+    _ = service.EndWorkload(SelectedWorkload);
+    RefreshWorkloadsList message = new(SelectedWorkload);
+    _ = WeakReferenceMessenger.Default.Send(message);
+
+    //await ShowToast("Workload saved");
+
+    _ = Shell.Current.Navigation.PopAsync();
+    //GoBack();
+  }
+
+  [RelayCommand]
+  public void GoBack() => Shell.Current.Navigation.PopAsync();
 }

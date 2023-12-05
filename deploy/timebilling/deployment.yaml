@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timebilling
+  labels:
+    app: timebilling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timebilling
+  template:
+    metadata:
+      labels:
+        app: timebilling
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "80"
+    spec:
+      containers:
+      - name: timebilling
+        image: registry:5000/timebilling:latest
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: timebilling-configmap
+        ports:
+        - containerPort: 80
+          name: http
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: timebilling-configmap
+data:
+  DOTNET_ENVIRONMENT: "Production"
+  ASPNETCORE_ENVIRONMENT: "Production"

@@ -22,7 +22,19 @@ public partial class WorkloadsPageViewModel : ObservableRecipient, IRecipient<Re
 
   private readonly IWorkloadService service;
 
-  public WorkloadsPageViewModel(IWorkloadService service) => this.service = service;
+  public WorkloadsPageViewModel(IWorkloadService service)
+  {
+    this.service = service;
+    Messenger.RegisterAll(this);
+    _ = Task.Run(async () =>
+    {
+      Workloads = (await service.GetWorkloads()).ToList();
+    });
+  }
 
-  public void Receive(RefreshWorkloadsList message) => throw new NotImplementedException();
+  public void Receive(RefreshWorkloadsList message)
+  {
+    Workloads.Where(w => w.WorkloadId == message.Value.WorkloadId).First().End = message.Value.End;
+    SelectedWorkload = null;
+  }
 }
