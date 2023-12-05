@@ -3,6 +3,6 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: true,
-  baseUrl: 'https://localhost:7107',
-  apiUrl: 'https://localhost:7107',
+  baseUrl: 'http://timebillingapi.local:8080',
+  apiUrl: 'http://timebillingapi.local:8080',
 };
