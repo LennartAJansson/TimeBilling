@@ -29,12 +29,13 @@ app.ConfigurePersistance();
 
 if (app.Environment.IsDevelopment())
 {
-  _ = app.UseSwagger();
-  _ = app.UseSwaggerUI();
 }
+_ = app.UseSwagger();
+_ = app.UseSwaggerUI();
+
 app.UseCors();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.AddWorkloadsEndpoints()
     .AddPeopleEndpoints()
