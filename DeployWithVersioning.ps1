@@ -14,8 +14,8 @@ if($alive -ne "pong")
 }
 
 foreach($name in @(
-	"TimeBilling", 
-	"TimeBillingApi"
+	"TimeBilling.Web", 
+	"TimeBilling.Api"
 ))
 {
 	$buildVersion = $null

@@ -37,8 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeBilling.Maui", "TimeBil
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{BA48A816-F983-4095-B239-E9429EC86250}"
 	ProjectSection(SolutionItems) = preProject
-		deploy\BuildWithVersioning.ps1 = deploy\BuildWithVersioning.ps1
-		deploy\DeployWithVersioning.ps1 = deploy\DeployWithVersioning.ps1
+		BuildWithVersioning.ps1 = BuildWithVersioning.ps1
+		DeployWithVersioning.ps1 = DeployWithVersioning.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "timebilling", "timebilling", "{9F6034F7-8CD7-4173-B6DD-2D7C2BE3FF1B}"

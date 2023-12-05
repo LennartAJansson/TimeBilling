@@ -13,11 +13,12 @@ if($alive -ne "pong")
 }
 
 foreach($name in @(
-	"TimeBilling", 
-	"TimeBillingApi"
+	"TimeBilling.Web", 
+	"TimeBilling.Api"
 ))
 {
-	$lowerName = $name.ToLower()
+	$lowerName = $name.ToLower() 
+	$lowerName = $lowerName -replace "\."
 	$branch = git rev-parse --abbrev-ref HEAD
 	$commit = git log -1 --pretty=format:"%H"
 	$description = "${branch}: ${commit}"

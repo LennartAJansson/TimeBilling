@@ -13,18 +13,21 @@ Update-Database -Context TimeBillingDbContext -Project TimeBilling.Persistance -
 
 internal sealed class TimeBillingDbContextFactory : IDesignTimeDbContextFactory<TimeBillingDbContext>
 {
-    public TimeBillingDbContext CreateDbContext(string[] args)
-    {
-        IConfiguration configuration = new ConfigurationBuilder()
-            .AddUserSecrets<TimeBillingDbContext>()
-            .Build();
+  public TimeBillingDbContext CreateDbContext(string[] args)
+  {
+    IConfiguration configuration = new ConfigurationBuilder()
+        .AddUserSecrets<TimeBillingDbContext>()
+        .Build();
 
-        DbContextOptionsBuilder<TimeBillingDbContext> optionsBuilder = new();
-        _ = optionsBuilder.UseSqlServer(configuration.GetConnectionString("TimeBillingDb")
-            ?? throw new ArgumentException("No connectionstring"))
+    string? connectionString = configuration.GetConnectionString("TimeBillingDb")
+      ?? throw new ArgumentException("No connectionstring");
+    ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
+
+    DbContextOptionsBuilder<TimeBillingDbContext> optionsBuilder = new();
+    _ = optionsBuilder.UseMySql(connectionString, serverVersion)
             .EnableSensitiveDataLogging()
             .EnableDetailedErrors();
 
-        return new TimeBillingDbContext(optionsBuilder.Options);
-    }
+    return new TimeBillingDbContext(optionsBuilder.Options);
+  }
 }

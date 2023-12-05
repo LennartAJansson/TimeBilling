@@ -12,31 +12,32 @@ using TimeBilling.Persistance.Services;
 
 public static class TestHelper
 {
-    public static IServiceProvider GetServiceProvider() => new ServiceCollection()
-        .AddLogging(builder => builder.SetMinimumLevel(LogLevel.Trace))
+  public static IServiceProvider GetServiceProvider() => new ServiceCollection()
+      .AddLogging(builder => builder.SetMinimumLevel(LogLevel.Trace))
 
-        //.AddApiHandlers()
-        .AddTransient<ICustomerHandlers, CustomerHandlers>()
+      //.AddApiHandlers()
+      .AddTransient<ICustomerHandlers, CustomerHandlers>()
 
-        //.AddDomainRegistrations()
-        .AddAutoMapper(typeof(DomainExtensions).Assembly)
-        .AddMediatR(configuration =>
-        {
-            _ = configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerMediator));
-        })
+      //.AddDomainRegistrations()
+      .AddAutoMapper(typeof(DomainExtensions).Assembly)
+      .AddMediatR(configuration =>
+      {
+        _ = configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerMediator));
+      })
 
 
-        //.AddPersistanceRegistrations()
-        .AddDbContext<ITimeBillingDbContext, TimeBillingDbContext>(builder =>
-        {
-            string connectionString = "Server=(localdb)\\MsSqlLocalDb;Database=TestTimeBillingDb;Trusted_Connection=True;MultipleActiveResultSets=true";
-            _ = builder.UseSqlServer(connectionString);
+      //.AddPersistanceRegistrations()
+      .AddDbContext<ITimeBillingDbContext, TimeBillingDbContext>(builder =>
+      {
+        string connectionString = "Server=localhost;Port=3306;User=root;Password=password;Database=TimeBillingDb";
+        ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
+        _ = builder.UseMySql(connectionString, serverVersion);
 
-            DbContextOptions<TimeBillingDbContext>? options = builder.Options as DbContextOptions<TimeBillingDbContext>;
-            using TimeBillingDbContext ctx = new(options!);
-            ctx.Database.Migrate();
-        })
-        .AddTransient<ITimeBillingService, TimeBillingService>()
+        DbContextOptions<TimeBillingDbContext>? options = builder.Options as DbContextOptions<TimeBillingDbContext>;
+        using TimeBillingDbContext ctx = new(options!);
+        ctx.Database.Migrate();
+      })
+      .AddTransient<ITimeBillingService, TimeBillingService>()
 
-        .BuildServiceProvider();
+      .BuildServiceProvider();
 }

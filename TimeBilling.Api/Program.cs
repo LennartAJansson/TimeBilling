@@ -3,6 +3,7 @@ using Microsoft.FeatureManagement.FeatureFilters;
 
 using TimeBilling.Api.Endpoints;
 using TimeBilling.Api.Extensions;
+using TimeBilling.Persistance.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services

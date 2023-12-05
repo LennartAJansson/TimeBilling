@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: timebilling
-        image: registry:5000/timebilling:latest
+        image: registry:5000/timebillingweb:latest
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
