@@ -1,8 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace TimeBilling.Persistance.Extensions;
-
+﻿namespace TimeBilling.Persistance.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 using TimeBilling.Domain.Abstract.Services;
 using TimeBilling.Persistance.Context;
@@ -21,5 +20,13 @@ public static class PersistanceExtensions
     _ = services.AddTransient<ITimeBillingService, TimeBillingService>();
 
     return services;
+  }
+
+  public static IHost ConfigurePersistance(this IHost app)
+  {
+    using IServiceScope scope = app.Services.CreateScope();
+    _ = scope.ServiceProvider.GetRequiredService<TimeBillingDbContext>().EnsureDbExists();
+
+    return app;
   }
 }

@@ -18,6 +18,9 @@ foreach($name in @(
 	"TimeBilling.Api"
 ))
 {
+	$lowerName = $name.ToLower() 
+	$lowerName = $lowerName -replace "\."
+
 	$buildVersion = $null
 	$buildVersion = &${curl} -s "${url}/buildversions/GetVersionByName/${name}" | ConvertFrom-Json
 	$semanticVersion = $buildVersion.semanticVersion
@@ -29,17 +32,17 @@ foreach($name in @(
 		return
 	}
 
-	"Current deploy: ${env:REGISTRYHOST}/${name}:${semanticVersion}"
+	"Current deploy: ${env:REGISTRYHOST}/${lowerName}:${semanticVersion}"
 
 	cd ./${deploy}/${name}
 
-	kustomize edit set image "${env:REGISTRYHOST}/${name}:${semanticVersion}"
+	kustomize edit set image "${env:REGISTRYHOST}/${lowerName}:${semanticVersion}"
 
 	if(Test-Path -Path ./secrets/*)
 	{
 		"Creating secrets"
-		kubectl create secret generic ${name}-secret --output json --dry-run=client --from-file=./secrets |
-			&${kubeseal} -n "${name}" --controller-namespace kube-system --format yaml > "secret.yaml"
+		kubectl create secret generic ${lowerName}-secret --output json --dry-run=client --from-file=./secrets |
+			&${kubeseal} -n "${lowerName}" --controller-namespace kube-system --format yaml > "secret.yaml"
 	}
 
 	cd ../..
