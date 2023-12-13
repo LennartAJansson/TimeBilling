@@ -2,14 +2,9 @@
 
 using MediatR;
 
-public record WorkloadResponse(int WorkloadId, DateTimeOffset Begin, DateTimeOffset? End, PersonResponse Person, CustomerResponse Customer)
-{
-  public TimeSpan Total => End.HasValue ? End.Value - Begin : DateTimeOffset.Now - Begin;
-}
+public record CreateWorkloadCommand(DateTimeOffset Begin, int PersonId, int CustomerId) : IRequest<WorkloadResponse>;
 
-public record BeginWorkloadCommand(DateTimeOffset Begin, int PersonId, int CustomerId) : IRequest<WorkloadResponse>;
-
-public record EndWorkloadCommand(int WorkloadId, DateTimeOffset End) : IRequest<WorkloadResponse>;
+public record UpdateWorkloadCommand(int WorkloadId, DateTimeOffset End) : IRequest<WorkloadResponse>;
 
 public record DeleteWorkloadCommand(int WorkloadId) : IRequest<WorkloadResponse>
 {

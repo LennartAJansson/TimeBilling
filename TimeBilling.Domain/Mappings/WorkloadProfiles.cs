@@ -13,16 +13,16 @@ public class WorkloadProfiles : Profile
         .ForCtorParam("WorkloadId", options => options.MapFrom("Id"))
         .ForCtorParam("Begin", options => options.MapFrom("Begin"))
         .ForCtorParam("End", options => options.MapFrom("End"))
-        .ForCtorParam("CustomerId", options => options.MapFrom("CustomerId"))
-        .ForCtorParam("PersonId", options => options.MapFrom("PersonId"));
+        .ForCtorParam("Customer", options => options.MapFrom(w => CustomerResponse.Create(w.Customer.Id, w.Customer.Name, Enumerable.Empty<WorkloadResponse>())))
+        .ForCtorParam("Person", options => options.MapFrom(w => PersonResponse.Create(w.Person.Id, w.Person.Name, Enumerable.Empty<WorkloadResponse>())));
 
-    _ = CreateMap<BeginWorkloadCommand, Workload>()
-        .ForCtorParam("Begin", options => options.MapFrom("Begin"))
-        .ForCtorParam("CustomerId", options => options.MapFrom("CustomerId"))
-        .ForCtorParam("PersonId", options => options.MapFrom("PersonId"));
+    _ = CreateMap<CreateWorkloadCommand, Workload>()
+        .ForMember("Begin", options => options.MapFrom("Begin"))
+        .ForMember("CustomerId", options => options.MapFrom("CustomerId"))
+        .ForMember("PersonId", options => options.MapFrom("PersonId"));
 
-    _ = CreateMap<EndWorkloadCommand, Workload>()
+    _ = CreateMap<UpdateWorkloadCommand, Workload>()
         .ForMember("Id", options => options.MapFrom("WorkloadId"))
-        .ForCtorParam("End", options => options.MapFrom("End"));
+        .ForMember("End", options => options.MapFrom("End"));
   }
 }

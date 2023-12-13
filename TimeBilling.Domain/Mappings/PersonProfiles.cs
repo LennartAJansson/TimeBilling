@@ -10,8 +10,12 @@ public class PersonProfiles : Profile
   public PersonProfiles()
   {
     _ = CreateMap<Person, PersonResponse>()
-        .ForCtorParam("PersonId", options => options.MapFrom("Id"))
-        .ForCtorParam("Name", options => options.MapFrom("Name"));
+        .ForCtorParam("PersonId", options => options.MapFrom(c => c.Id))
+        .ForCtorParam("Name", options => options.MapFrom(c => c.Name))
+        .ForCtorParam("Workloads", opt => opt.MapFrom(src => src.Workloads.Select(w =>
+          WorkloadResponse.Create(w.Id, w.Begin, w.End,
+            null,
+            CustomerResponse.Create(w.Customer.Id, w.Customer.Name, Enumerable.Empty<WorkloadResponse>())))));
 
     _ = CreateMap<CreatePersonCommand, Person>();
 

@@ -41,7 +41,7 @@ internal sealed class TimeBillingService : ITimeBillingService
     return person;
   }
 
-  public async Task<Workload> BeginWorkload(Workload workload)
+  public async Task<Workload> CreateWorkload(Workload workload)
   {
     _ = context.Add(workload);
     _ = await context.SaveChangesAsync();
@@ -132,7 +132,11 @@ internal sealed class TimeBillingService : ITimeBillingService
     {
       return null;
     }
-    context.Entry(person).Collection(p => p.Workloads).Load();
+    context.Entry(person).Collection(p => p.Workloads).Load(Microsoft.EntityFrameworkCore.ChangeTracking.LoadOptions.ForceIdentityResolution);
+    foreach (Workload workload in person.Workloads)
+    {
+      context.Entry(workload).Reference(p => p.Customer).Load();
+    }
     return person;
   }
 
@@ -198,7 +202,7 @@ internal sealed class TimeBillingService : ITimeBillingService
     return person;
   }
 
-  public async Task<Workload?> EndWorkload(Workload workload)
+  public async Task<Workload?> UpdateWorkload(Workload workload)
   {
     _ = context.Update(workload);
     _ = await context.SaveChangesAsync();

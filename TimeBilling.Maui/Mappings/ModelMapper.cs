@@ -18,7 +18,7 @@ public class ModelMapper : Profile
     _ = CreateMap<Customer, UpdateCustomerCommand>();
 
     _ = CreateMap<WorkloadResponse, Workload>();
-    _ = CreateMap<Workload, BeginWorkloadCommand>();
-    _ = CreateMap<Workload, EndWorkloadCommand>();
+    _ = CreateMap<Workload, CreateWorkloadCommand>();
+    _ = CreateMap<Workload, UpdateWorkloadCommand>();
   }
 }

@@ -18,8 +18,8 @@ public class WorkloadMediator :
     IRequestHandler<GetWorkloadsByCustomerQuery, IEnumerable<WorkloadResponse>>,
     IRequestHandler<GetWorkloadsByPersonQuery, IEnumerable<WorkloadResponse>>,
     IRequestHandler<GetWorkloadQuery, WorkloadResponse>,
-    IRequestHandler<BeginWorkloadCommand, WorkloadResponse>,
-    IRequestHandler<EndWorkloadCommand, WorkloadResponse?>,
+    IRequestHandler<CreateWorkloadCommand, WorkloadResponse>,
+    IRequestHandler<UpdateWorkloadCommand, WorkloadResponse?>,
     IRequestHandler<DeleteWorkloadCommand, WorkloadResponse>
 {
     private readonly ILogger<WorkloadMediator> logger;
@@ -65,16 +65,16 @@ public class WorkloadMediator :
         return response;
     }
 
-    public async Task<WorkloadResponse> Handle(BeginWorkloadCommand request, CancellationToken cancellationToken)
+    public async Task<WorkloadResponse> Handle(CreateWorkloadCommand request, CancellationToken cancellationToken)
     {
         Workload workload = mapper.Map<Workload>(request);
-        Workload result = await service.BeginWorkload(workload);
+        Workload result = await service.CreateWorkload(workload);
         WorkloadResponse response = mapper.Map<WorkloadResponse>(result);
 
         return response;
     }
 
-    public async Task<WorkloadResponse?> Handle(EndWorkloadCommand request, CancellationToken cancellationToken)
+    public async Task<WorkloadResponse?> Handle(UpdateWorkloadCommand request, CancellationToken cancellationToken)
     {
         Workload? workload = await service.ReadWorkload(request.WorkloadId);
         if (workload is null) 
@@ -83,7 +83,7 @@ public class WorkloadMediator :
         }
 
         workload.End = request.End;
-        Workload? result = await service.EndWorkload(workload);
+        Workload? result = await service.UpdateWorkload(workload);
         WorkloadResponse response = mapper.Map<WorkloadResponse>(result);
 
         return response;

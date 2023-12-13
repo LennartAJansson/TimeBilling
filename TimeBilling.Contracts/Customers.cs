@@ -4,11 +4,6 @@ using System.Collections.Generic;
 
 using MediatR;
 
-public record CustomerResponse(int CustomerId, string Name, IEnumerable<WorkloadResponse> Workloads)
-{
-  public static CustomerResponse Create(int id, string name, IEnumerable<WorkloadResponse> workloads) => new(id, name, workloads);
-}
-
 public record CreateCustomerCommand(string Name) : IRequest<CustomerResponse>
 {
   public static CreateCustomerCommand Create(string name) => new(name);

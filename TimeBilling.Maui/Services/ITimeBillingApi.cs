@@ -73,11 +73,11 @@ namespace GeneratedCode
 
         [Headers("Accept: application/json")]
         [Post("/Workloads/BeginWorkload")]
-        Task<WorkloadResponse> BeginWorkload([Body] BeginWorkloadCommand body);
+        Task<WorkloadResponse> BeginWorkload([Body] CreateWorkloadCommand body);
 
         [Headers("Accept: application/json")]
         [Put("/Workloads/EndWorkload")]
-        Task<WorkloadResponse> EndWorkload([Body] EndWorkloadCommand body);
+        Task<WorkloadResponse> EndWorkload([Body] UpdateWorkloadCommand body);
 
         [Headers("Accept: application/json")]
         [Delete("/Workloads/DeleteWorkload/{workloadId}")]

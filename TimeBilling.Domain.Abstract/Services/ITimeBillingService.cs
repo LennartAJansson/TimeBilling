@@ -17,12 +17,12 @@ public interface ITimeBillingService
     Task<Customer?> UpdateCustomer(Customer customer);
     Task<Customer?> DeleteCustomer(int customerId);
 
-    Task<Workload> BeginWorkload(Workload workload);
+    Task<Workload> CreateWorkload(Workload workload);
     Task<Workload?> ReadWorkload(int workloadId);
     Task<IEnumerable<Workload>> ReadWorkloads();
     Task<IEnumerable<Workload>> ReadWorkloadsByPerson(int personId);
     Task<IEnumerable<Workload>> ReadWorkloadsByCustomer(int customerId);
-    Task<Workload?> EndWorkload(Workload workload);
+    Task<Workload?> UpdateWorkload(Workload workload);
     Task<Workload?> DeleteWorkload(int workloadId);
 
 }
