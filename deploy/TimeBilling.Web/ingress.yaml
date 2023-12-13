@@ -1,18 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: timebilling
+  name: timebillingweb
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: "timebilling.local"
+  - host: "timebillingweb.local"
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: timebilling
+            name: timebillingweb
             port:
               number: 80

@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: timebilling
+  name: timebillingweb
   labels:
-    app: timebilling
+    app: timebillingweb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: timebilling
+      app: timebillingweb
   template:
     metadata:
       labels:
-        app: timebilling
+        app: timebillingweb
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "80"
     spec:
       containers:
-      - name: timebilling
+      - name: timebillingweb
         image: registry:5000/timebillingweb:latest
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: timebilling-configmap
+            name: timebillingweb-configmap
         ports:
         - containerPort: 80
           name: http
@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: timebilling-configmap
+  name: timebillingweb-configmap
 data:
   DOTNET_ENVIRONMENT: "Production"
   ASPNETCORE_ENVIRONMENT: "Production"
