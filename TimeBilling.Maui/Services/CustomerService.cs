@@ -7,6 +7,7 @@ using AutoMapper;
 
 using GeneratedCode;
 
+using TimeBilling.Contracts;
 using TimeBilling.Maui.Models;
 
 public class CustomerService : ICustomerService
@@ -20,9 +21,36 @@ public class CustomerService : ICustomerService
     this.mapper = mapper;
   }
 
-  public Task<Customer> CreateCustomer(Customer request) => throw new NotImplementedException();
-  public Task<Customer> UpdateCustomer(Customer request) => throw new NotImplementedException();
-  public Task<Customer> DeleteCustomer(Customer request) => throw new NotImplementedException();
-  public Task<Customer> GetCustomer(int id) => throw new NotImplementedException();
-  public Task<IEnumerable<Customer>> GetCustomers() => throw new NotImplementedException();
+  public async Task<Customer> CreateCustomer(Customer customer)
+  {
+    CreateCustomerCommand request = mapper.Map<CreateCustomerCommand>(customer);
+    CustomerResponse response = await api.CreateCustomer(request);
+    return mapper.Map<Customer>(response);
+  }
+
+  public async Task<Customer> UpdateCustomer(Customer customer)
+  {
+    UpdateCustomerCommand request = mapper.Map<UpdateCustomerCommand>(customer);
+    CustomerResponse response = await api.UpdateCustomer(request);
+    return mapper.Map<Customer>(response);
+  }
+
+  public async Task<Customer> DeleteCustomer(Customer customer)
+  {
+    CustomerResponse response = await api.DeleteCustomer(customer.CustomerId);
+    return mapper.Map<Customer>(response);
+  }
+
+  public async Task<Customer> GetCustomer(int customerId)
+  {
+    CustomerResponse response = await api.GetCustomer(customerId);
+    return mapper.Map<Customer>(response);
+  }
+
+  public async Task<IEnumerable<Customer>> GetCustomers()
+  {
+    ICollection<CustomerResponse> customerResponse = await api.GetCustomers();
+    IEnumerable<Customer> result = customerResponse.Select(p => mapper.Map<Customer>(p));
+    return result;
+  }
 }

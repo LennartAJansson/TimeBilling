@@ -4,9 +4,9 @@ using TimeBilling.Maui.ViewModels;
 
 public partial class PeoplePage : ContentPage
 {
-	public PeoplePage(PeoplePageViewModel vm)
-	{
-		InitializeComponent();
-		BindingContext = vm;
-	}
+  public PeoplePage(PeoplePageViewModel vm)
+  {
+    InitializeComponent();
+    BindingContext = vm;
+  }
 }

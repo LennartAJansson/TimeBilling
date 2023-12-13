@@ -7,6 +7,7 @@ using AutoMapper;
 
 using GeneratedCode;
 
+using TimeBilling.Contracts;
 using TimeBilling.Maui.Models;
 
 public class WorkloadService : IWorkloadService
@@ -20,9 +21,36 @@ public class WorkloadService : IWorkloadService
     this.mapper = mapper;
   }
 
-  public Task<Workload> BeginWorkload(Workload workload) => throw new NotImplementedException();
-  public Task<Workload> EndWorkload(Workload workload) => throw new NotImplementedException();
-  public Task<Workload> DeleteWorkload(Workload workload) => throw new NotImplementedException();
-  public Task<Workload> GetWorkload(int id) => throw new NotImplementedException();
-  public Task<IEnumerable<Workload>> GetWorkloads() => throw new NotImplementedException();
+  public async Task<Workload> BeginWorkload(Workload workload)
+  {
+    BeginWorkloadCommand request = mapper.Map<BeginWorkloadCommand>(workload);
+    WorkloadResponse response = await api.BeginWorkload(request);
+    return mapper.Map<Workload>(response);
+  }
+
+  public async Task<Workload> EndWorkload(Workload workload)
+  {
+    EndWorkloadCommand request = mapper.Map<EndWorkloadCommand>(workload);
+    WorkloadResponse response = await api.EndWorkload(request);
+    return mapper.Map<Workload>(response);
+  }
+
+  public async Task<Workload> DeleteWorkload(Workload workload)
+  {
+    WorkloadResponse response = await api.DeleteWorkload(workload.WorkloadId);
+    return mapper.Map<Workload>(response);
+  }
+
+  public async Task<Workload> GetWorkload(int workloadId)
+  {
+    WorkloadResponse response = await api.GetWorkload(workloadId);
+    return mapper.Map<Workload>(response);
+  }
+
+  public async Task<IEnumerable<Workload>> GetWorkloads()
+  {
+    ICollection<WorkloadResponse> workloadsResponse = await api.GetWorkloads();
+    IEnumerable<Workload> result = workloadsResponse.Select(w => mapper.Map<Workload>(w));
+    return result;
+  }
 }

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:m="clr-namespace:TimeBilling.Maui.Models"
+             xmlns:vm="clr-namespace:TimeBilling.Maui.ViewModels"
              x:Class="TimeBilling.Maui.Views.WorkloadsPage"
-             Title="WorkloadsPage">
+             Title="WorkloadsPage"
+             x:DataType="vm:WorkloadsPageViewModel">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="{Binding SelectedWorkload.Begin}" FontSize="Large" FontAttributes="Bold"/>
+
+        <CollectionView ItemsSource="{Binding Workloads}" SelectedItem="{Binding SelectedWorkload}" HeightRequest="500">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:Workload">
+                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="160,160,Auto">
+                        <Label Grid.Column="0" Text="{Binding Begin}" Margin="10"/>
+                        <Label Grid.Column="1" Text="{Binding End}" Margin="10"/>
+                        <Label Grid.Column="2" Text="{Binding Total}" Margin="10"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
+
 </ContentPage>

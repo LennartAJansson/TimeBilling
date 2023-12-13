@@ -14,8 +14,9 @@ public static class PersistanceExtensions
     _ = services.AddDbContext<ITimeBillingDbContext, TimeBillingDbContext>(builder =>
     {
       ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
-      _ = builder.UseMySql(connectionString, serverVersion);
-
+      _ = builder.UseMySql(connectionString, serverVersion)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors();
     });
     _ = services.AddTransient<ITimeBillingService, TimeBillingService>();
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:m="clr-namespace:TimeBilling.Maui.Models"
              xmlns:vm="clr-namespace:TimeBilling.Maui.ViewModels"
              x:Class="TimeBilling.Maui.Views.PeoplePage"
@@ -8,15 +9,17 @@
              x:DataType="vm:PeoplePageViewModel">
 
     <VerticalStackLayout>
-        <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold">
-        </Label>
-        
-        <ListView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
-            <ListView.ItemTemplate>
+        <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
+
+        <CollectionView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Person">
-                    <TextCell Text="{Binding Name}"/>
+                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="160,Auto">
+                        <Label Grid.Column="0" Text="{Binding PersonId}" Margin="10"/>
+                        <Label Grid.Column="1" Text="{Binding Name}" Margin="10"/>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

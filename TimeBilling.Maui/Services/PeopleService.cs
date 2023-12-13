@@ -18,7 +18,12 @@ public class PeopleService : IPeopleService
     this.mapper = mapper;
   }
 
-  public Task<Person> CreatePerson(Person person) => throw new NotImplementedException();
+  public async Task<Person> CreatePerson(Person person)
+  {
+    CreatePersonCommand request = mapper.Map<CreatePersonCommand>(person);
+    PersonResponse response = await api.CreatePerson(request);
+    return mapper.Map<Person>(response);
+  }
 
   public async Task<Person> UpdatePerson(Person person)
   {
@@ -27,9 +32,17 @@ public class PeopleService : IPeopleService
     return mapper.Map<Person>(response);
   }
 
-  public Task<Person> DeletePerson(Person person) => throw new NotImplementedException();
+  public async Task<Person> DeletePerson(Person person)
+  {
+    PersonResponse response = await api.DeletePerson(person.PersonId);
+    return mapper.Map<Person>(response);
+  }
 
-  public Task<Person> GetPerson(int id) => throw new NotImplementedException();
+  public async Task<Person> GetPerson(int personId)
+  {
+    PersonResponse response = await api.GetPerson(personId);
+    return mapper.Map<Person>(response);
+  }
 
   public async Task<IEnumerable<Person>> GetPeople()
   {
