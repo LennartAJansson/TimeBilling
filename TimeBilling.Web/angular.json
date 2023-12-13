@@ -100,10 +100,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "TimeBilling.Web:build:production"
+              "buildTarget": "TimeBilling.Web:build:production"
             },
             "development": {
-              "browserTarget": "TimeBilling.Web:build:development"
+              "buildTarget": "TimeBilling.Web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -111,7 +111,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "TimeBilling.Web:build"
+            "buildTarget": "TimeBilling.Web:build"
           }
         },
         "test": {
