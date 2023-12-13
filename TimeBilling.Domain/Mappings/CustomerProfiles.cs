@@ -7,13 +7,15 @@ using TimeBilling.Model;
 
 public class CustomerProfiles : Profile
 {
-    public CustomerProfiles()
-    {
-        CreateMap<Customer, CustomerResponse>()
-            .ForCtorParam("CustomerId", options => options.MapFrom("Id"));
-        CreateMap<CreateCustomerCommand, Customer>();
-        //TODO! Fix all mappings! UpdateCustomerCommand.CustomerId maps to Customer.Id
-        CreateMap<UpdateCustomerCommand, Customer>()
-            .ForMember("Id", options=>options.MapFrom("CustomerId"));
-    }
+  public CustomerProfiles()
+  {
+    _ = CreateMap<Customer, CustomerResponse>()
+        .ForCtorParam("CustomerId", options => options.MapFrom(c => c.Id))
+        .ForCtorParam("Name", options => options.MapFrom(c => c.Name));
+
+    _ = CreateMap<CreateCustomerCommand, Customer>();
+
+    _ = CreateMap<UpdateCustomerCommand, Customer>()
+        .ForMember("Id", options => options.MapFrom("CustomerId"));
+  }
 }
