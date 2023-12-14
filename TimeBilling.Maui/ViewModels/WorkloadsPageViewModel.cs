@@ -1,6 +1,7 @@
 ﻿namespace TimeBilling.Maui.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
 using TimeBilling.Maui.Models;
@@ -31,6 +32,9 @@ public partial class WorkloadsPageViewModel : ObservableRecipient, IRecipient<Re
       Workloads = (await service.GetWorkloads()).ToList();
     });
   }
+
+  [RelayCommand]
+  public async Task Refresh() => Workloads = (await service.GetWorkloads()).ToList();
 
   public void Receive(RefreshWorkloadsList message)
   {

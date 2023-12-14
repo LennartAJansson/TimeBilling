@@ -8,15 +8,18 @@
              Title="WorkloadsPage"
              x:DataType="vm:WorkloadsPageViewModel">
     <VerticalStackLayout>
+        <Button Text="Refresh" Command="{Binding RefreshCommand}" WidthRequest="80"/>
         <Label Text="{Binding SelectedWorkload.Begin}" FontSize="Large" FontAttributes="Bold"/>
 
-        <CollectionView ItemsSource="{Binding Workloads}" SelectedItem="{Binding SelectedWorkload}" HeightRequest="500">
+        <CollectionView ItemsSource="{Binding Workloads}" SelectedItem="{Binding SelectedWorkload}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Workload">
-                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="160,160,Auto">
-                        <Label Grid.Column="0" Text="{Binding Begin}" Margin="10"/>
-                        <Label Grid.Column="1" Text="{Binding End}" Margin="10"/>
-                        <Label Grid.Column="2" Text="{Binding Total}" Margin="10"/>
+                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="160,160,100,160,160">
+                        <Label Grid.Column="0" Text="{Binding Begin, StringFormat='{0:yyyy-MM-dd HH.mm}'}" Margin="10"/>
+                        <Label Grid.Column="1" Text="{Binding End, StringFormat='{0:yyyy-MM-dd HH.mm}'}" Margin="10"/>
+                        <Label Grid.Column="2" Text="{Binding Total, StringFormat='{0:c}'}" Margin="10"/>
+                        <Label Grid.Column="3" Text="{Binding Customer.Name}" Margin="10"/>
+                        <Label Grid.Column="4" Text="{Binding Person.Name}" Margin="10"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

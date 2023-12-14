@@ -8,12 +8,13 @@
              Title="CustomersPage"
              x:DataType="vm:CustomersPageViewModel">
     <VerticalStackLayout>
+        <Button Text="Refresh" Command="{Binding RefreshCommand}" WidthRequest="80"/>
         <Label Text="{Binding SelectedCustomer.Name}" FontSize="Large" FontAttributes="Bold"/>
 
-        <CollectionView ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" HeightRequest="500">
+        <CollectionView ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Customer">
-                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="160,Auto">
+                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="60,Auto">
                         <Label Grid.Column="0" Text="{Binding CustomerId}" Margin="10"/>
                         <Label Grid.Column="1" Text="{Binding Name}" Margin="10"/>
                     </Grid>

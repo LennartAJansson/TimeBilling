@@ -1,5 +1,6 @@
 ﻿namespace TimeBilling.Maui.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
 using TimeBilling.Maui.Models;
@@ -30,6 +31,9 @@ public partial class PeoplePageViewModel : ObservableRecipient, IRecipient<Refre
       People = (await service.GetPeople()).ToList();
     });
   }
+
+  [RelayCommand]
+  public async Task Refresh() => People = (await service.GetPeople()).ToList();
 
   public void Receive(RefreshPeopleList message)
   {

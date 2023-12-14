@@ -144,6 +144,7 @@ internal sealed class TimeBillingService : ITimeBillingService
   {
     IEnumerable<Person> people = context.People
       .Include("Workloads")
+      .Include("Workloads.Customer")
       .AsEnumerable();
     return Task.FromResult(people);
   }

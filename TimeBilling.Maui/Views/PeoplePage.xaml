@@ -9,12 +9,13 @@
              x:DataType="vm:PeoplePageViewModel">
 
     <VerticalStackLayout>
+        <Button Text="Refresh" Command="{Binding RefreshCommand}" WidthRequest="80"/>
         <Label Text="{Binding SelectedPerson.Name}" FontSize="Large" FontAttributes="Bold"/>
 
-        <CollectionView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" HeightRequest="500">
+        <CollectionView ItemsSource="{Binding People}" SelectedItem="{Binding SelectedPerson}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Person">
-                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="160,Auto">
+                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="60,Auto">
                         <Label Grid.Column="0" Text="{Binding PersonId}" Margin="10"/>
                         <Label Grid.Column="1" Text="{Binding Name}" Margin="10"/>
                     </Grid>
