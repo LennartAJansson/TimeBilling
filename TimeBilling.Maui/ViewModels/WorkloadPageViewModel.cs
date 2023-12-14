@@ -25,7 +25,7 @@ public partial class WorkloadPageViewModel : ObservableRecipient, IRecipient<Sel
   [RelayCommand]
   public void SaveAndExit()
   {
-    _ = service.EndWorkload(SelectedWorkload);
+    _ = service.UpdateWorkload(SelectedWorkload);
     RefreshWorkloadsList message = new(SelectedWorkload);
     _ = WeakReferenceMessenger.Default.Send(message);
 

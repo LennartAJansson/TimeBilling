@@ -4,6 +4,6 @@ public sealed class Customer
 {
   public int CustomerId { get; set; }
   public required string Name { get; set; }
-
-  internal static Customer? Clone(Customer customer) => new() { CustomerId = customer.CustomerId, Name = customer.Name };
+  public required ICollection<Workload> Workloads { get; set; }
+  internal static Customer? Clone(Customer customer) => new() { CustomerId = customer.CustomerId, Name = customer.Name, Workloads = customer.Workloads };
 }

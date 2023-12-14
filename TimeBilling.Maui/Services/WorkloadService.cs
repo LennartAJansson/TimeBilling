@@ -21,17 +21,17 @@ public class WorkloadService : IWorkloadService
     this.mapper = mapper;
   }
 
-  public async Task<Workload> BeginWorkload(Workload workload)
+  public async Task<Workload> CreateWorkload(Workload workload)
   {
     CreateWorkloadCommand request = mapper.Map<CreateWorkloadCommand>(workload);
-    WorkloadResponse response = await api.BeginWorkload(request);
+    WorkloadResponse response = await api.CreateWorkload(request);
     return mapper.Map<Workload>(response);
   }
 
-  public async Task<Workload> EndWorkload(Workload workload)
+  public async Task<Workload> UpdateWorkload(Workload workload)
   {
     UpdateWorkloadCommand request = mapper.Map<UpdateWorkloadCommand>(workload);
-    WorkloadResponse response = await api.EndWorkload(request);
+    WorkloadResponse response = await api.UpdateWorkload(request);
     return mapper.Map<Workload>(response);
   }
 
