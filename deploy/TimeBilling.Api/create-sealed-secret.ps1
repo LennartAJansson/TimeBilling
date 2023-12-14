@@ -1,2 +1,2 @@
 kubectl create secret generic timebillingapi-secret --output json --dry-run=client --from-file=./secrets |
-    C:/Apps/kubeseal/kubeseal -n "timebillingapi" --controller-namespace kube-system --format yaml > "secret.yaml"
+    C:/Apps/kubeseal/kubeseal -n "timebilling" --controller-namespace kube-system --format yaml > "secret.yaml"

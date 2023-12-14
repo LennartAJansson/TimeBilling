@@ -2,8 +2,9 @@ $hostname=""
 $url = "http://buildversionsapi.local:8080"
 $curl = "curl.exe"
 $configuration = "production"
+$namespace = "timebilling"
 $deploy = "deploy"
-$kubeseal = "C:/Apps/kubeseal/kubeseal"
+$kubeseal = "C:/Apps/kubeseal/kubeseal.exe"
 
 $alive = &${curl} -s "${url}/Ping" -H "accept: text/plain"
 if($alive -ne "pong")
@@ -42,7 +43,7 @@ foreach($name in @(
 	{
 		"Creating secrets"
 		kubectl create secret generic ${lowerName}-secret --output json --dry-run=client --from-file=./secrets |
-			&${kubeseal} -n "${lowerName}" --controller-namespace kube-system --format yaml > "secret.yaml"
+			&${kubeseal} -n "${namespace}" --controller-namespace kube-system --format yaml > "secret.yaml"
 	}
 
 	cd ../..

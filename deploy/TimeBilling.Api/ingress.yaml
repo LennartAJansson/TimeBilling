@@ -16,3 +16,13 @@ spec:
             name: timebillingapi
             port:
               number: 80
+  - host: "timebillingapi"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: timebillingapi
+            port:
+              number: 80
