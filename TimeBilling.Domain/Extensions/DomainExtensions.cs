@@ -11,7 +11,7 @@ public static class DomainExtensions
 
         services.AddMediatR(configuration =>
         {
-            configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerMediator));
+            configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerCommandMediator));
         });
 
         return services;

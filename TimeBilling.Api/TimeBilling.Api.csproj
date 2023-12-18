@@ -22,6 +22,7 @@
     <ProjectReference Include="..\TimeBilling.Domain.Abstract\TimeBilling.Domain.Abstract.csproj" />
     <ProjectReference Include="..\TimeBilling.Domain\TimeBilling.Domain.csproj" />
     <ProjectReference Include="..\TimeBilling.Persistance\TimeBilling.Persistance.csproj" />
+    <ProjectReference Include="..\TimeBilling.Queries\TimeBilling.Queries.csproj" />
   </ItemGroup>
 
 </Project>

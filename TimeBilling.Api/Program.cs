@@ -4,11 +4,13 @@ using Microsoft.FeatureManagement.FeatureFilters;
 using TimeBilling.Api.Endpoints;
 using TimeBilling.Api.Extensions;
 using TimeBilling.Persistance.Extensions;
+using TimeBilling.Queries.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddApiHandlers()
     .AddDomainRegistrations()
+    .AddQueriesRegistrations()
     .AddPersistanceRegistrations(builder.Configuration.GetConnectionString("TimeBillingDb")
         ?? throw new ArgumentException("No connectionstring"));
 

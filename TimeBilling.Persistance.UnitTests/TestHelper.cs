@@ -23,7 +23,7 @@ public static class TestHelper
         using TimeBillingDbContext ctx = new(options!);
         ctx.Database.Migrate();
       })
-      .AddTransient<ITimeBillingService, TimeBillingService>()
+      .AddTransient<ITimeBillingCommandService, TimeBillingCommandService>()
 
       .BuildServiceProvider();
 }

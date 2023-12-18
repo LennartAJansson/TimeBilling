@@ -22,7 +22,7 @@ public static class TestHelper
       .AddAutoMapper(typeof(DomainExtensions).Assembly)
       .AddMediatR(configuration =>
       {
-        _ = configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerMediator));
+        _ = configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerCommandMediator));
       })
 
 
@@ -37,7 +37,7 @@ public static class TestHelper
         using TimeBillingDbContext ctx = new(options!);
         ctx.Database.Migrate();
       })
-      .AddTransient<ITimeBillingService, TimeBillingService>()
+      .AddTransient<ITimeBillingCommandService, TimeBillingCommandService>()
 
       .BuildServiceProvider();
 }

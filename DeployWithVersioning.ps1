@@ -4,7 +4,7 @@ $curl = "curl.exe"
 $configuration = "production"
 $namespace = "timebilling"
 $deploy = "deploy"
-$kubeseal = "C:/Apps/kubeseal/kubeseal.exe"
+$kubeseal = "kubeseal"
 
 $alive = &${curl} -s "${url}/Ping" -H "accept: text/plain"
 if($alive -ne "pong")

@@ -18,7 +18,7 @@ public static class PersistanceExtensions
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors();
     });
-    _ = services.AddTransient<ITimeBillingService, TimeBillingService>();
+    _ = services.AddTransient<ITimeBillingCommandService, TimeBillingCommandService>();
 
     return services;
   }
