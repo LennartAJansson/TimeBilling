@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-using TimeBilling.Contracts;
+using TimeBilling.Common.Contracts;
 
 namespace GeneratedCode
 {
@@ -21,19 +21,19 @@ namespace GeneratedCode
 
         [Headers("Accept: application/json")]
         [Get("/Customers/GetCustomer/{customerId}")]
-        Task<CustomerResponse> GetCustomer(int customerId);
+        Task<CustomerResponse> GetCustomer(Guid customerId);
 
         [Headers("Accept: application/json")]
         [Post("/Customers/CreateCustomer")]
-        Task<CustomerResponse> CreateCustomer([Body] CreateCustomerCommand body);
+        Task<CustomerResponse> CreateCustomer([Body] CreateCustomerRequest body);
 
         [Headers("Accept: application/json")]
         [Put("/Customers/UpdateCustomer")]
-        Task<CustomerResponse> UpdateCustomer([Body] UpdateCustomerCommand body);
+        Task<CustomerResponse> UpdateCustomer([Body] UpdateCustomerRequest body);
 
         [Headers("Accept: application/json")]
         [Delete("/Customers/DeleteCustomer/{customerId}")]
-        Task<CustomerResponse> DeleteCustomer(int customerId);
+        Task<CustomerResponse> DeleteCustomer(Guid customerId);
 
         [Headers("Accept: application/json")]
         [Get("/People/GetPeople")]
@@ -41,19 +41,19 @@ namespace GeneratedCode
 
         [Headers("Accept: application/json")]
         [Get("/People/GetPerson/{personId}")]
-        Task<PersonResponse> GetPerson(int personId);
+        Task<PersonResponse> GetPerson(Guid personId);
 
         [Headers("Accept: application/json")]
         [Post("/People/CreatePerson")]
-        Task<PersonResponse> CreatePerson([Body] CreatePersonCommand body);
+        Task<PersonResponse> CreatePerson([Body] CreatePersonRequest body);
 
         [Headers("Accept: application/json")]
         [Put("/People/UpdatePerson")]
-        Task<PersonResponse> UpdatePerson([Body] UpdatePersonCommand body);
+        Task<PersonResponse> UpdatePerson([Body] UpdatePersonRequest body);
 
         [Headers("Accept: application/json")]
         [Delete("/People/DeletePerson/{personId}")]
-        Task<PersonResponse> DeletePerson(int personId);
+        Task<PersonResponse> DeletePerson(Guid personId);
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkloads")]
@@ -61,26 +61,26 @@ namespace GeneratedCode
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkload/{workloadId}")]
-        Task<WorkloadResponse> GetWorkload(int workloadId);
+        Task<WorkloadResponse> GetWorkload(Guid workloadId);
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkloadsByCustomer/{customerId}")]
-        Task<ICollection<WorkloadResponse>> GetWorkloadsByCustomer(int customerId);
+        Task<ICollection<WorkloadResponse>> GetWorkloadsByCustomer(Guid customerId);
 
         [Headers("Accept: application/json")]
         [Get("/Workloads/GetWorkloadsByPerson/{personId}")]
-        Task<ICollection<WorkloadResponse>> GetWorkloadsByPerson(int personId);
+        Task<ICollection<WorkloadResponse>> GetWorkloadsByPerson(Guid personId);
 
         [Headers("Accept: application/json")]
         [Post("/Workloads/CreateWorkload")]
-        Task<WorkloadResponse> CreateWorkload([Body] CreateWorkloadCommand body);
+        Task<WorkloadResponse> CreateWorkload([Body] CreateWorkloadRequest body);
 
         [Headers("Accept: application/json")]
         [Put("/Workloads/UpdateWorkload")]
-        Task<WorkloadResponse> UpdateWorkload([Body] UpdateWorkloadCommand body);
+        Task<WorkloadResponse> UpdateWorkload([Body] UpdateWorkloadRequest body);
 
         [Headers("Accept: application/json")]
         [Delete("/Workloads/DeleteWorkload/{workloadId}")]
-        Task<WorkloadResponse> DeleteWorkload(int workloadId);
+        Task<WorkloadResponse> DeleteWorkload(Guid workloadId);
     }
 }

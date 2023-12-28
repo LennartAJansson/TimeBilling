@@ -68,7 +68,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\TimeBilling.Contracts\TimeBilling.Contracts.csproj" />
+	  <ProjectReference Include="..\TimeBilling.Common.Contracts\TimeBilling.Common.Contracts.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

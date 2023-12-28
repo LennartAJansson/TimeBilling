@@ -4,7 +4,7 @@ using AutoMapper;
 
 using GeneratedCode;
 
-using TimeBilling.Contracts;
+using TimeBilling.Common.Contracts;
 using TimeBilling.Maui.Models;
 
 public class PeopleService : IPeopleService
@@ -20,14 +20,14 @@ public class PeopleService : IPeopleService
 
   public async Task<Person> CreatePerson(Person person)
   {
-    CreatePersonCommand request = mapper.Map<CreatePersonCommand>(person);
+    CreatePersonRequest request = mapper.Map<CreatePersonRequest>(person);
     PersonResponse response = await api.CreatePerson(request);
     return mapper.Map<Person>(response);
   }
 
   public async Task<Person> UpdatePerson(Person person)
   {
-    UpdatePersonCommand request = mapper.Map<UpdatePersonCommand>(person);
+    UpdatePersonRequest request = mapper.Map<UpdatePersonRequest>(person);
     PersonResponse response = await api.UpdatePerson(request);
     return mapper.Map<Person>(response);
   }
@@ -38,7 +38,7 @@ public class PeopleService : IPeopleService
     return mapper.Map<Person>(response);
   }
 
-  public async Task<Person> GetPerson(int personId)
+  public async Task<Person> GetPerson(Guid personId)
   {
     PersonResponse response = await api.GetPerson(personId);
     return mapper.Map<Person>(response);

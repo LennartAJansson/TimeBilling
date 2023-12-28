@@ -27,10 +27,7 @@ public partial class CustomersPageViewModel : ObservableRecipient, IRecipient<Re
   {
     this.service = service;
     Messenger.RegisterAll(this);
-    _ = Task.Run(async () =>
-    {
-      Customers = (await service.GetCustomers()).ToList();
-    });
+    _ = Task.Run(Refresh);
   }
 
   [RelayCommand]

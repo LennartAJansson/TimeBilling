@@ -7,7 +7,7 @@ using AutoMapper;
 
 using GeneratedCode;
 
-using TimeBilling.Contracts;
+using TimeBilling.Common.Contracts;
 using TimeBilling.Maui.Models;
 
 public class CustomerService : ICustomerService
@@ -23,14 +23,14 @@ public class CustomerService : ICustomerService
 
   public async Task<Customer> CreateCustomer(Customer customer)
   {
-    CreateCustomerCommand request = mapper.Map<CreateCustomerCommand>(customer);
+    CreateCustomerRequest request = mapper.Map<CreateCustomerRequest>(customer);
     CustomerResponse response = await api.CreateCustomer(request);
     return mapper.Map<Customer>(response);
   }
 
   public async Task<Customer> UpdateCustomer(Customer customer)
   {
-    UpdateCustomerCommand request = mapper.Map<UpdateCustomerCommand>(customer);
+    UpdateCustomerRequest request = mapper.Map<UpdateCustomerRequest>(customer);
     CustomerResponse response = await api.UpdateCustomer(request);
     return mapper.Map<Customer>(response);
   }
@@ -41,7 +41,7 @@ public class CustomerService : ICustomerService
     return mapper.Map<Customer>(response);
   }
 
-  public async Task<Customer> GetCustomer(int customerId)
+  public async Task<Customer> GetCustomer(Guid customerId)
   {
     CustomerResponse response = await api.GetCustomer(customerId);
     return mapper.Map<Customer>(response);

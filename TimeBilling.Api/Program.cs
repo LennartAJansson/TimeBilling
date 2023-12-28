@@ -1,21 +1,20 @@
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
 
-using TimeBilling.Api.Endpoints;
-using TimeBilling.Api.Extensions;
-using TimeBilling.Persistance.Extensions;
-using TimeBilling.Queries.Extensions;
+using TimeBilling.Api.Domain.Endpoints;
+using TimeBilling.Api.Domain.Extensions;
+using TimeBilling.Api.Persistance.Extensions;
+using TimeBilling.Common.Messaging.Extensions;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-builder.Services
-    .AddApiHandlers()
-    .AddDomainRegistrations()
-    .AddQueriesRegistrations()
-    .AddPersistanceRegistrations(builder.Configuration.GetConnectionString("TimeBillingDb")
-        ?? throw new ArgumentException("No connectionstring"));
 
-builder.Services.AddFeatureManagement(builder.Configuration.GetSection("FeatureManagement"))
-    .AddFeatureFilter<PercentageFilter>();
+builder.Services
+    .AddApiDomainRegistrations()
+    .AddApiPersistanceRegistrations()
+    .AddMessagingRegistrations()
+    .AddFeatureManagement(builder.Configuration.GetSection("FeatureManagement")
+        ?? throw new ArgumentException("No feature filters found"))
+      .AddFeatureFilter<PercentageFilter>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,10 +24,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder
         .AllowAnyHeader()
         .AllowAnyOrigin()));
 
-
 WebApplication app = builder.Build();
-
-app.ConfigurePersistance();
 
 if (app.Environment.IsDevelopment())
 {

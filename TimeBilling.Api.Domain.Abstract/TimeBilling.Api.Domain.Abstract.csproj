@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeBilling.Common.Contracts\TimeBilling.Common.Contracts.csproj" />
+    <ProjectReference Include="..\TimeBilling.Model\TimeBilling.Model.csproj" />
+  </ItemGroup>
+
+</Project>

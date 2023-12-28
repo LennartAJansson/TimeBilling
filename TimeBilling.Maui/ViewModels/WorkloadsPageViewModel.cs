@@ -27,10 +27,7 @@ public partial class WorkloadsPageViewModel : ObservableRecipient, IRecipient<Re
   {
     this.service = service;
     Messenger.RegisterAll(this);
-    _ = Task.Run(async () =>
-    {
-      Workloads = (await service.GetWorkloads()).ToList();
-    });
+    _ = Task.Run(Refresh);
   }
 
   [RelayCommand]

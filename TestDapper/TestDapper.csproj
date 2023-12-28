@@ -8,12 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TimeBilling.Contracts\TimeBilling.Contracts.csproj" />
+    <ProjectReference Include="..\TimeBilling.Api.Domain\TimeBilling.Api.Domain.csproj" />
+    <ProjectReference Include="..\TimeBilling.Api.Persistance\TimeBilling.Api.Persistance.csproj" />
     <ProjectReference Include="..\TimeBilling.Model\TimeBilling.Model.csproj" />
-    <ProjectReference Include="..\TimeBilling.Queries\TimeBilling.Queries.csproj" />
   </ItemGroup>
 </Project>

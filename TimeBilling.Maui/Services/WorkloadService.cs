@@ -7,7 +7,7 @@ using AutoMapper;
 
 using GeneratedCode;
 
-using TimeBilling.Contracts;
+using TimeBilling.Common.Contracts;
 using TimeBilling.Maui.Models;
 
 public class WorkloadService : IWorkloadService
@@ -23,14 +23,14 @@ public class WorkloadService : IWorkloadService
 
   public async Task<Workload> CreateWorkload(Workload workload)
   {
-    CreateWorkloadCommand request = mapper.Map<CreateWorkloadCommand>(workload);
+    CreateWorkloadRequest request = mapper.Map<CreateWorkloadRequest>(workload);
     WorkloadResponse response = await api.CreateWorkload(request);
     return mapper.Map<Workload>(response);
   }
 
   public async Task<Workload> UpdateWorkload(Workload workload)
   {
-    UpdateWorkloadCommand request = mapper.Map<UpdateWorkloadCommand>(workload);
+    UpdateWorkloadRequest request = mapper.Map<UpdateWorkloadRequest>(workload);
     WorkloadResponse response = await api.UpdateWorkload(request);
     return mapper.Map<Workload>(response);
   }
@@ -41,7 +41,7 @@ public class WorkloadService : IWorkloadService
     return mapper.Map<Workload>(response);
   }
 
-  public async Task<Workload> GetWorkload(int workloadId)
+  public async Task<Workload> GetWorkload(Guid workloadId)
   {
     WorkloadResponse response = await api.GetWorkload(workloadId);
     return mapper.Map<Workload>(response);

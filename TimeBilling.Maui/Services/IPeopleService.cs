@@ -10,6 +10,6 @@ public interface IPeopleService
   Task<Person> CreatePerson(Person person);
   Task<Person> UpdatePerson(Person person);
   Task<Person> DeletePerson(Person person);
-  Task<Person> GetPerson(int id);
+  Task<Person> GetPerson(Guid id);
   Task<IEnumerable<Person>> GetPeople();
 }

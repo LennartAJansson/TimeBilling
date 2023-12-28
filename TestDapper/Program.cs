@@ -1,12 +1,12 @@
-using TimeBilling.Domain.Abstract.Services;
-using TimeBilling.Model;
-using TimeBilling.Queries.Constants;
-using TimeBilling.Queries.Extensions;
+using AutoMapper;
+
+using MediatR;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-      _ = services.AddQueriesRegistrations();
+      _ = services.AddDomainRegistrations();
+      _ = services.AddPersistanceRegistrations();
     })
     .Build();
 
@@ -16,28 +16,33 @@ using IServiceScope scope = host.Services.CreateScope();
 IServiceProvider serviceProvider = scope.ServiceProvider;
 
 ITimeBillingQueryService service = serviceProvider.GetRequiredService<ITimeBillingQueryService>();
+IMapper mapper = serviceProvider.GetRequiredService<IMapper>();
+IMediator mediator = serviceProvider.GetRequiredService<IMediator>();
 ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
-IEnumerable<Customer> customers = await service.ReadCustomers();
-Customer customer = await service.ReadCustomer(1);
+IEnumerable<CustomerResponse> customers = mapper.Map<IEnumerable<CustomerResponse>>(await service.ReadCustomers());
+CustomerResponse? customer = mapper.Map<CustomerResponse>(await service.ReadCustomer(1));
 
-IEnumerable<Person> people = await service.ReadPeople();
-Person person = await service.ReadPerson(1);
+IEnumerable<PersonResponse> people = mapper.Map<IEnumerable<PersonResponse>>(await service.ReadPeople());
+PersonResponse? person = mapper.Map<PersonResponse>(await service.ReadPerson(1));
 
-IEnumerable<Workload> workloads = await service.ReadWorkloads();
-Workload workload = await service.ReadWorkload(1);
-IEnumerable<Workload> workloadsByCustomer = await service.ReadWorkloadsByCustomer(1);
-IEnumerable<Workload> workloadsByPerson = await service.ReadWorkloadsByPerson(1);
+IEnumerable<WorkloadResponse> workloads = mapper.Map<IEnumerable<WorkloadResponse>>(await service.ReadWorkloads());
+WorkloadResponse? workload = mapper.Map<WorkloadResponse>(await service.ReadWorkload(1));
+IEnumerable<WorkloadResponse> workloadsByCustomer = mapper.Map<IEnumerable<WorkloadResponse>>(await service.ReadWorkloadsByCustomer(1));
+IEnumerable<WorkloadResponse> workloadsByPerson = mapper.Map<IEnumerable<WorkloadResponse>>(await service.ReadWorkloadsByPerson(1));
 
-Console.WriteLine(QueryStrings.ReadAllCustomers + ';');
-Console.WriteLine(QueryStrings.ReadCustomerById + ';');
-Console.WriteLine(QueryStrings.ReadAllPeople + ';');
-Console.WriteLine(QueryStrings.ReadPersonById + ';');
-Console.WriteLine(QueryStrings.ReadAllWorkloads + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadById + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadsByCustomer + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadsByPerson + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadsByCustomerWithPeople + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadsByPersonWithCustomer + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadsByCustomerWithCustomerAndPeople + ';');
-Console.WriteLine(QueryStrings.ReadWorkloadsByPersonWithCustomerAndPeople + ';');
+Console.WriteLine();
+Console.WriteLine(customers.Combine());
+Console.WriteLine();
+Console.WriteLine(customer);
+Console.WriteLine();
+Console.WriteLine(people.Combine());
+Console.WriteLine();
+Console.WriteLine(person);
+Console.WriteLine(workloads.Combine());
+Console.WriteLine();
+Console.WriteLine(workload);
+Console.WriteLine();
+Console.WriteLine(workloadsByCustomer.Combine());
+Console.WriteLine();
+Console.WriteLine(workloadsByPerson.Combine());

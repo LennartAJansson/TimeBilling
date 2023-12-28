@@ -2,8 +2,8 @@
 
 public sealed class Workload : Entity
 {
-  public int CustomerId { get; set; }
-  public int PersonId { get; set; }
+  public Guid CustomerId { get; set; }
+  public Guid PersonId { get; set; }
   public DateTimeOffset Begin { get; set; }
   public DateTimeOffset? End { get; set; }
   public TimeSpan Total => End.HasValue ? End.Value - Begin : DateTimeOffset.Now - Begin;

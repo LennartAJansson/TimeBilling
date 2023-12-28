@@ -14,7 +14,7 @@
         <CollectionView ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:Customer">
-                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="60,Auto">
+                    <Grid BackgroundColor="White" HorizontalOptions="Fill" ColumnDefinitions="360,Auto">
                         <Label Grid.Column="0" Text="{Binding CustomerId}" Margin="10"/>
                         <Label Grid.Column="1" Text="{Binding Name}" Margin="10"/>
                     </Grid>

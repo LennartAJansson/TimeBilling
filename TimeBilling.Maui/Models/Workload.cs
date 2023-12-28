@@ -2,7 +2,7 @@
 
 public sealed class Workload
 {
-  public int WorkloadId { get; set; }
+  public Guid WorkloadId { get; set; }
   //public int CustomerId { get; set; }
   //public int PersonId { get; set; }
   public DateTimeOffset Begin { get; set; }

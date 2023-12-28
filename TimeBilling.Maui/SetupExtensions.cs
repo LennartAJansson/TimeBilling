@@ -23,7 +23,8 @@ public static class SetupExtensions
         .ConfigureHttpClient(c =>
         {
           c.Timeout = TimeSpan.FromSeconds(300);
-          c.BaseAddress = new Uri("http://timebilling.local:8080/");
+          //c.BaseAddress = new Uri("http://timebilling.local:8080/");
+          c.BaseAddress = new Uri("http://localhost:5253/");
           //c.BaseAddress = new Uri(configuration.GetValue<string>("AuthUrl")
           //    ?? throw new ArgumentException("No AuthUrl found in configuration"));
         });

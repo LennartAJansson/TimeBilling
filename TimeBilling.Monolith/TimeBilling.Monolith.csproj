@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-TimeBilling.Api-a9b7b85e-00d1-4ecf-9c1d-c6709400f9c0</UserSecretsId>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--<ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeBilling.Api.Domain\TimeBilling.Api.Domain.csproj" />
+    <ProjectReference Include="..\TimeBilling.Api.Persistance\TimeBilling.Api.Persistance.csproj" />
+    <ProjectReference Include="..\TimeBilling.Projector.Domain\TimeBilling.Projector.Domain.csproj" />
+    <ProjectReference Include="..\TimeBilling.Projector.Persistance\TimeBilling.Projector.Persistance.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,7 +1,7 @@
 ﻿namespace TimeBilling.Maui.Models;
 public sealed class Person
 {
-  public int PersonId { get; set; }
+  public Guid PersonId { get; set; }
   public required string Name { get; set; }
   public required ICollection<Workload> Workloads { get; set; }
 

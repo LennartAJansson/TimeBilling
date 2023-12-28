@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-TimeBilling.Projector-b4b0a008-75e1-4aa3-b8eb-dea4d0c92b2b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeBilling.Projector.Domain\TimeBilling.Projector.Domain.csproj" />
+    <ProjectReference Include="..\TimeBilling.Projector.Domain.Abstract\TimeBilling.Projector.Domain.Abstract.csproj" />
+    <ProjectReference Include="..\TimeBilling.Projector.Persistance\TimeBilling.Projector.Persistance.csproj" />
+  </ItemGroup>
+</Project>
