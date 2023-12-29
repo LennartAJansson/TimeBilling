@@ -5,6 +5,7 @@ import { Observable, firstValueFrom, lastValueFrom } from 'rxjs';
 import { Customer } from '../models/customer.model';
 import { Workload } from '../models/workload.model';
 import { environment } from '../environments/environment';
+import { GUID } from '../models/guid.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class TimebillingService {
     return await firstValueFrom(this.createPerson(person));
   }
 
-  //ute i implementeringen, personResponse är en Person
+  //ute i implementeringen, personResponse är en Person:
   async a(){
     let personResponse = await this.CreatePerson2(new Person());
   }
@@ -45,11 +46,12 @@ export class TimebillingService {
     return await lastValueFrom(this.http.get<Person[]>(url));
   }
 
+  //ute i implementeringen, peopleResponse är en Person[]:
   async b(){
     let peopleResponse = await this.getPeople2();
   }
 
-  getPerson(personId: number): Observable<Person> {
+  getPerson(personId: GUID): Observable<Person> {
     const url = this.peopleUrl + "/GetPerson/" + personId;
     return this.http.get<Person>(url);
   }
@@ -59,7 +61,7 @@ export class TimebillingService {
     return this.http.put<Person>(url, person);
   }
 
-  deletePerson(personId: number): Observable<Person> {
+  deletePerson(personId: GUID): Observable<Person> {
     const url = this.peopleUrl + "/DeletePerson/" + personId;
     return this.http.delete<Person>(url);
   }
@@ -74,7 +76,7 @@ export class TimebillingService {
     return this.http.get<Customer[]>(url);
   }
 
-  getCustomer(customerId: number): Observable<Customer> {
+  getCustomer(customerId: GUID): Observable<Customer> {
     const url = this.customersUrl + "/GetCustomer/" + customerId;
     return this.http.get<Customer>(url);
   }
@@ -84,7 +86,7 @@ export class TimebillingService {
     return this.http.put<Customer>(url, customer);
   }
 
-  deleteCustomer(customerId: number): Observable<Customer> {
+  deleteCustomer(customerId: GUID): Observable<Customer> {
     const url = this.customersUrl + "/DeleteCustomer/" + customerId;
     return this.http.delete<Customer>(url);
   }
@@ -94,12 +96,12 @@ export class TimebillingService {
     return this.http.post<Workload>(url, workload);
   }
 
-  getWorkloadsByCustomer(customerId:number): Observable<Workload[]> {
+  getWorkloadsByCustomer(customerId:GUID): Observable<Workload[]> {
     const url = this.workloadsUrl + "/GetWorkloadsByCustomer/" + customerId;
     return this.http.get<Workload[]>(url);
   }
 
-  getWorkloadsByPerson(personId: number): Observable<Workload[]> {
+  getWorkloadsByPerson(personId: GUID): Observable<Workload[]> {
     const url = this.workloadsUrl + "/GetWorkloadsByPerson/" + personId;
     return this.http.get<Workload[]>(url);
   }
@@ -109,7 +111,7 @@ export class TimebillingService {
     return this.http.get<Workload[]>(url);
   }
 
-  getWorkload(workloadId: number): Observable<Workload> {
+  getWorkload(workloadId: GUID): Observable<Workload> {
     const url = this.workloadsUrl + "/GetWorkload/" + workloadId;
     return this.http.get<Workload>(url);
   }
@@ -119,7 +121,7 @@ export class TimebillingService {
     return this.http.put<Workload>(url, workload);
   }
 
-  deleteWorkload(workloadId: number): Observable<Workload> {
+  deleteWorkload(workloadId: GUID): Observable<Workload> {
     const url = this.workloadsUrl + "/DeleteWorkload/" + workloadId;
     return this.http.delete<Workload>(url);
   }

@@ -26,14 +26,14 @@ public sealed class QueryStrings
 
   //Internal substrings:
   internal const string WhereCustomerId = @"WHERE c.Id = @CustomerId ";
-  internal const string CustomerJoinWorkloads = @"INNER JOIN Workloads AS w ON c.Id = w.CustomerId ";
+  internal const string CustomerJoinWorkloads = @"LEFT JOIN Workloads AS w ON c.Id = w.CustomerId ";
   internal const string WherePersonId = @"WHERE p.Id = @PersonId ";
-  internal const string PersonJoinWorkloads = @"INNER JOIN Workloads AS w ON p.Id = w.PersonId ";
+  internal const string PersonJoinWorkloads = @"LEFT JOIN Workloads AS w ON p.Id = w.PersonId ";
   internal const string WhereWorkloadId = @"WHERE w.Id = @WorkloadId ";
   internal const string WhereWorkloadCustomerId = @"WHERE w.CustomerId = @CustomerId ";
   internal const string WhereWorkloadPersonId = @"WHERE w.PersonId = @PersonId ";
-  internal const string WorkloadsJoinCustomer = @"INNER JOIN Customers AS c ON c.Id = w.CustomerId ";
-  internal const string WorkloadsJoinPerson = "INNER JOIN People AS p ON p.Id = w.PersonId ";
+  internal const string WorkloadsJoinCustomer = @"LEFT JOIN Customers AS c ON c.Id = w.CustomerId ";
+  internal const string WorkloadsJoinPerson = "LEFT JOIN People AS p ON p.Id = w.PersonId ";
   internal const string WorkloadsJoinCustomerAndPeople = WorkloadsJoinCustomer + WorkloadsJoinPerson;
 }
 

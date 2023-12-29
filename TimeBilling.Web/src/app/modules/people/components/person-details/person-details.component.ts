@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Person } from '../../../../models/person.model';
 import { ActivatedRoute } from '@angular/router';
 import { TimebillingService } from '../../../../services/timebilling.service';
+import { GUID, guid } from 'src/app/models/guid.model';
 
 @Component({
   selector: 'app-person-details',
@@ -18,18 +19,18 @@ export class PersonDetailsComponent implements OnInit {
   public dataSource = new MatTableDataSource<Workload>();
   columns: string[] = ['workloadId', 'customer', 'begin', 'end', 'total', 'actions'];
 
-  personId?: number;
+  personId?: GUID;
   constructor(private activatedRoute: ActivatedRoute, private service: TimebillingService) {
   }
 
   ngOnInit(): void {
     const idParam = this.activatedRoute.snapshot.paramMap.get('personId');
-    this.personId = idParam ? +idParam : 0;
+    this.personId = guid(idParam!);
     this.retrievePerson(this.personId);
     this.retrieveWorkloadsForPerson(this.personId);
   }
 
-  retrievePerson(id: number): void {
+  retrievePerson(id: GUID): void {
     this.service.getPerson(id).subscribe({
       next: (data) => {
         this.person = data;
@@ -39,7 +40,7 @@ export class PersonDetailsComponent implements OnInit {
     });
   }
 
-  retrieveWorkloadsForPerson(id: number): void {
+  retrieveWorkloadsForPerson(id: GUID): void {
     this.service.getWorkloadsByPerson(id).subscribe({
       next: (data) => {
         this.workloads = data;

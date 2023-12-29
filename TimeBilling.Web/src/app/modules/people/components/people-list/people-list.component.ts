@@ -4,6 +4,7 @@ import { TimebillingService } from '../../../../services/timebilling.service';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPersonDialog } from '../add-person/add-person-dialog';
+import { GUID } from 'src/app/models/guid.model';
 
 @Component({
   selector: 'app-people-list',
@@ -17,7 +18,6 @@ export class PeopleListComponent implements OnInit{
   public dataSource = new MatTableDataSource<Person>();
   columns: string[] = ['personId', 'name', 'actions'];
 
-  //Simon är puckad
   service2 = inject(TimebillingService);
 
   public newPerson?: Person = {}
@@ -35,6 +35,7 @@ export class PeopleListComponent implements OnInit{
       next: (data) => {
         this.people = data;
         this.dataSource.data = this.people;
+        console.log(this.people);
       },
       error: (e) => console.error(e),
     });
@@ -49,7 +50,7 @@ export class PeopleListComponent implements OnInit{
     this.currentIndex = index;
   }
 
-  removePerson(id: number): void {
+  removePerson(id: GUID): void {
     this.service.deletePerson(id).subscribe({
       next: (res) => {
         console.log(res);

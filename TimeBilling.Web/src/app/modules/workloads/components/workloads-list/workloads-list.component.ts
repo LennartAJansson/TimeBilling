@@ -4,6 +4,7 @@ import { TimebillingService } from '../../../../services/timebilling.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddWorkloadDialog } from '../add-workload/add-workload-dialog';
+import { GUID } from 'src/app/models/guid.model';
 
 @Component({
   selector: 'app-workloads-list',
@@ -47,7 +48,7 @@ export class WorkloadsListComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  removeWorkload(id: number): void {
+  removeWorkload(id: GUID): void {
     this.service.deleteWorkload(id).subscribe({
       next: (res) => {
         console.log(res);

@@ -3,6 +3,7 @@ import { Workload } from '../../../../models/workload.model';
 //import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TimebillingService } from '../../../../services/timebilling.service';
+import { GUID, guid } from 'src/app/models/guid.model';
 
 @Component({
   selector: 'app-workload-details',
@@ -15,7 +16,7 @@ export class WorkloadDetailsComponent implements OnInit {
   public workload: Workload = {};
   //public dataSource = new MatTableDataSource<Workload>();
   //columns: string[] = ['customerId', 'name', 'actions'];
-  workloadId?: number;
+  workloadId?: GUID;
 
   public currentWorkload?: Workload | null;
   currentIndex = -1;
@@ -25,11 +26,11 @@ export class WorkloadDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const idParam = this.activatedRoute.snapshot.paramMap.get('workloadId');
-    this.workloadId = idParam ? +idParam : 0;
+    this.workloadId = guid(idParam!);
     this.retrieveWorkloadsForCustomer(this.workloadId);
   }
 
-  retrieveWorkloadsForCustomer(id: number): void {
+  retrieveWorkloadsForCustomer(id: GUID): void {
     this.service.getWorkload(id).subscribe({
       next: (data) => {
         this.workload = data;

@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-TimeBilling.Projector-b4b0a008-75e1-4aa3-b8eb-dea4d0c92b2b</UserSecretsId>
+    <UserSecretsId>TimeBilling.Api</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 

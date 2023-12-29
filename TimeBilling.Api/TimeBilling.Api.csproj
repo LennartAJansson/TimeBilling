@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-TimeBilling.Api-a9b7b85e-00d1-4ecf-9c1d-c6709400f9c0</UserSecretsId>
+    <UserSecretsId>TimeBilling.Api</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 

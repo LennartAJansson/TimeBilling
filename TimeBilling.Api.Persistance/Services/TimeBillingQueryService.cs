@@ -86,15 +86,22 @@ public sealed class TimeBillingQueryService : ITimeBillingQueryService
 
     IEnumerable<Person> people = connection.Query<Person, Workload, Customer, Person>(sql, map: (p, w, c) =>
     {
-      p.Workloads.Add(w);
-      w.Customer = c;
+      if (w is not null)
+      {
+        p.Workloads.Add(w);
+        w.Customer = c;
+      }
       return p;
     });
 
     IEnumerable<Person> result = people.GroupBy(p => p.Id).Select(g =>
     {
       Person groupedPerson = g.First();
-      groupedPerson.Workloads = g.Select(p => p.Workloads.Single()).ToList();
+      if (groupedPerson.Workloads.Any())
+      {
+        groupedPerson.Workloads = g.Select(p => p.Workloads.Single()).ToList();
+      }
+
       return groupedPerson;
     }).ToList();
 
@@ -111,16 +118,22 @@ public sealed class TimeBillingQueryService : ITimeBillingQueryService
     IEnumerable<Person> people = connection.Query<Person, Workload, Customer, Person>(sql, param: new { PersonId = personId },
       map: (p, w, c) =>
       {
-        w.Customer = c;
-        p.Workloads.Add(w);
+        if (w is not null)
+        {
+          p.Workloads.Add(w);
+          w.Customer = c;
+        }
         return p;
       });
 
     Person? result = people.GroupBy(p => p.Id).Select(g =>
     {
       Person groupedPerson = g.First();
-      groupedPerson.Workloads = g
-        .Select(p => p.Workloads.Single()).ToList();
+      if (groupedPerson.Workloads.Any())
+      {
+        groupedPerson.Workloads = g.Select(p => p.Workloads.Single()).ToList();
+      }
+
       return groupedPerson;
     }).SingleOrDefault();
 

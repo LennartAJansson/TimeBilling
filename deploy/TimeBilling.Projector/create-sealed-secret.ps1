@@ -1,0 +1,2 @@
+kubectl create secret generic timebillingprojector-secret --output json --dry-run=client --from-file=./secrets |
+    C:/Apps/kubeseal/kubeseal -n "timebilling" --controller-namespace kube-system --format yaml > "secret.yaml"

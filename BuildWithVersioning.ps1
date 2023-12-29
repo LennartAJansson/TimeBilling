@@ -14,7 +14,9 @@ if($alive -ne "pong")
 
 foreach($name in @(
 	"TimeBilling.Web", 
-	"TimeBilling.Api"
+	"TimeBilling.Api", 
+	"TimeBilling.Projector",
+	"TimeBilling.Monolith"
 ))
 {
 	$lowerName = $name.ToLower() 

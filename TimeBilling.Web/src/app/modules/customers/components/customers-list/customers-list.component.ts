@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomerDialog } from '../add-customer/add-customer-dialog';
 import { firstValueFrom } from 'rxjs';
+import { GUID } from 'src/app/models/guid.model';
 
 @Component({
   selector: 'app-customers-list',
@@ -33,6 +34,7 @@ export class CustomersListComponent implements OnInit {
       next: (data) => {
         this.customers = data;
         this.dataSource.data = this.customers;
+        console.log(this.customers);
       },
       error: (e) => console.error(e),
     });
@@ -47,7 +49,7 @@ export class CustomersListComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  removeCustomer(id: number): void {
+  removeCustomer(id: GUID): void {
     this.service.deleteCustomer(id).subscribe({
       next: (res) => {
         console.log(res);
