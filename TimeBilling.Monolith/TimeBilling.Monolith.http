@@ -1,6 +1,78 @@
-@TimeBilling.Monolith_HostAddress = http://localhost:5253
+@TimeBilling.Monolith_HostAddress = https://localhost:7064
 
-GET {{TimeBilling.Monolith_HostAddress}}/weatherforecast/
+POST {{TimeBilling.Monolith_HostAddress}}/auth/users/register
 Accept: application/json
+Content-Type: application/json
 
+{
+  "Email": "nisse@local",
+  "Password": "123456",
+  "ConfirmPassword": "123456"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/users/acknowledge
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "nisse@local"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "nisse@local",
+  "password": "123456"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/roles/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "roleName": "Testare"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/roles/assign
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "nisse@local",
+  "roleName": "Testare"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/roles/revoke
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "nisse@local",
+  "roleName": "Testare"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/roles/delete
+Accept: application/json
+Content-Type: application/json
+
+{
+  "roleName": "Testare"
+}
+###
+
+POST {{TimeBilling.Monolith_HostAddress}}/auth/users/logout
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "nisse@local"
+}
 ###

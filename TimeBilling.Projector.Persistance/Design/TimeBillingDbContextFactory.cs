@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using TimeBilling.Projector.Persistance.Context;
 
 /*
+Make sure you have a user secret for this assembly containing a connectionstring named "TimeBillingDb"
+
+Then run following command lines in the Package Manager Console:
 Add-Migration Initial -Context TimeBillingDbContext -Project TimeBilling.Projector.Persistance -StartupProject TimeBilling.Projector.Persistance 
 Update-Database -Context TimeBillingDbContext -Project TimeBilling.Projector.Persistance -StartupProject TimeBilling.Projector.Persistance
 */

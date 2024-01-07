@@ -131,6 +131,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "secrets", "secrets", "{7AAB
 		deploy\TimeBilling.Projector\secrets\ConnectionStrings__TimeBillingIdentity = deploy\TimeBilling.Projector\secrets\ConnectionStrings__TimeBillingIdentity
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeBilling.Api.Auth", "TimeBilling.Api.Auth\TimeBilling.Api.Auth.csproj", "{6C23D0CC-8D0A-4332-8E09-AB3A80E08AC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -201,6 +203,10 @@ Global
 		{0064F4A9-76F0-46AD-817E-822D3F5E544C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0064F4A9-76F0-46AD-817E-822D3F5E544C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0064F4A9-76F0-46AD-817E-822D3F5E544C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C23D0CC-8D0A-4332-8E09-AB3A80E08AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C23D0CC-8D0A-4332-8E09-AB3A80E08AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C23D0CC-8D0A-4332-8E09-AB3A80E08AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C23D0CC-8D0A-4332-8E09-AB3A80E08AC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +241,7 @@ Global
 		{7D37F0BB-65A8-4CE2-AEC7-9CBCEA502144} = {BA48A816-F983-4095-B239-E9429EC86250}
 		{8F85053C-EC86-4DF2-B225-AD0DA9867137} = {7D37F0BB-65A8-4CE2-AEC7-9CBCEA502144}
 		{7AAB315C-761A-40C5-B64A-DAD0B819C59F} = {865ECDC9-3A92-43F4-B6CA-AE1C6C366AFD}
+		{6C23D0CC-8D0A-4332-8E09-AB3A80E08AC1} = {948BFD10-F463-4FAF-AD4C-C633D17017B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5682B5B3-C4A8-412D-8AA2-028EDDDE9672}

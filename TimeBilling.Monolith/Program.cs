@@ -1,6 +1,8 @@
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
+using Microsoft.OpenApi.Models;
 
+using TimeBilling.Api.Auth;
 using TimeBilling.Api.Domain.Endpoints;
 using TimeBilling.Api.Domain.Extensions;
 using TimeBilling.Api.Persistance.Extensions;
@@ -11,6 +13,8 @@ using TimeBilling.Projector.Persistance.Extensions;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddApiAuth(builder.Configuration)
+    .ChangeMailProvider<DummyAuthMail>()
     .AddApiDomainRegistrations()
     .AddApiPersistanceRegistrations()
     .AddMessagingRegistrations()
@@ -22,7 +26,11 @@ builder.Services
       .AddFeatureFilter<PercentageFilter>();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+  c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+  c.EnableAnnotations();
+});
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder
         .AllowAnyMethod()
@@ -30,6 +38,8 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder
         .AllowAnyOrigin()));
 
 WebApplication app = builder.Build();
+
+app.UpdateIdentityDb();
 
 app.ConfigurePersistance();
 
@@ -39,9 +49,11 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 
+//app.UseHttpsRedirection();
+
 app.UseCors();
 
-//app.UseHttpsRedirection();
+app.UseApiAuth();
 
 app.AddWorkloadsEndpoints()
     .AddPeopleEndpoints()

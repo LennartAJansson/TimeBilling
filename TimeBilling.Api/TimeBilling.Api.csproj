@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TimeBilling.Api.Auth\TimeBilling.Api.Auth.csproj" />
     <ProjectReference Include="..\TimeBilling.Api.Domain\TimeBilling.Api.Domain.csproj" />
     <ProjectReference Include="..\TimeBilling.Api.Domain.Abstract\TimeBilling.Api.Domain.Abstract.csproj" />
     <ProjectReference Include="..\TimeBilling.Api.Persistance\TimeBilling.Api.Persistance.csproj" />
