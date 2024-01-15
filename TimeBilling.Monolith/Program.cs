@@ -17,7 +17,9 @@ builder.Services
     .ChangeMailProvider<DummyAuthMail>()
     .AddApiDomainRegistrations()
     .AddApiPersistanceRegistrations()
-    .AddMessagingRegistrations()
+    //.AddMessagingRegistrations()
+    .AddNatsListener(builder.Configuration)
+    .AddNatsSender(builder.Configuration)
     .AddProjectorDomainRegistrations()
     .AddProjectorPersistanceRegistrations(builder.Configuration.GetConnectionString("TimeBillingDb")
       ?? throw new ArgumentException("ConnectionString TimeBillingDb not found"))
@@ -36,6 +38,8 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(builder => builder
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowAnyOrigin()));
+
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 WebApplication app = builder.Build();
 

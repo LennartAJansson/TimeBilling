@@ -40,8 +40,7 @@ public sealed class ApiAuthService(RoleManager<AuthRole> roles, UserManager<Auth
     return !result.Succeeded ? throw new Exception(result.Errors.First().Description) : user;
   }
 
-  public Task<AuthUser> AcknowledgeRegistration(string email) =>
-    throw new NotImplementedException();
+  public Task<AuthUser> AcknowledgeRegistration(string email) => throw new NotImplementedException();
 
   public async Task<AuthLogin> Login(string email, string password)
   {
@@ -64,54 +63,22 @@ public sealed class ApiAuthService(RoleManager<AuthRole> roles, UserManager<Auth
 
     string jwt = GenerateJwt(user, roles);
 
+    //await signIn.SignInAsync(user, false);
+
     return new AuthLogin(user.Id, user.UserName, roles, jwt);
   }
 
-  public Task<AuthUser> Logout(string email) =>
-    throw new NotImplementedException();
-
-  public string Base64UrlEncode(string base64EncodedData) => Convert.ToBase64String(Encoding.UTF8.GetBytes(base64EncodedData)).TrimEnd('=').Replace('+', '-').Replace('/', '_');
-
-  private string GenerateJwt(AuthUser user, IEnumerable<string> roles)
+  public async Task<AuthUser> Logout(string email)
   {
-    List<Claim> claims =
-    [
-      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-      new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-    ];
-
-    if (user.UserName is not null)
+    AuthUser? user = await users.FindByEmailAsync(email);
+    if (user is null)
     {
-      claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+      throw new Exception("User not found");
     }
 
-    if (user.Email is not null)
-    {
-      claims.Add(new Claim(ClaimTypes.Email, user.Email));
-    }
+    //await signIn.SignOutAsync();
 
-    if (user.PhoneNumber is not null)
-    {
-      claims.Add(new Claim(ClaimTypes.HomePhone, user.PhoneNumber));
-    }
-
-    IEnumerable<Claim> roleClaims = roles.Select(r => new Claim(ClaimTypes.Role, r));
-    claims.AddRange(roleClaims);
-
-    SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(options.Value.Secret));
-    SigningCredentials creds = new(key, SecurityAlgorithms.HmacSha256);
-    DateTime expires = DateTime.Now.AddDays(Convert.ToDouble(options.Value.ExpirationInDays));
-
-    JwtSecurityToken token = new(
-        issuer: options.Value.Issuer,
-        audience: options.Value.Issuer,
-        claims: claims,
-        expires: expires,
-        signingCredentials: creds
-    );
-
-    return new JwtSecurityTokenHandler().WriteToken(token);
+    return user;
   }
 
   public async Task<AuthRole> CreateRole(string roleName)
@@ -188,4 +155,49 @@ public sealed class ApiAuthService(RoleManager<AuthRole> roles, UserManager<Auth
 
     return !result.Succeeded ? throw new Exception(result.Errors.First().Description) : role;
   }
+
+  public string Base64UrlEncode(string base64EncodedData) => Convert.ToBase64String(Encoding.UTF8.GetBytes(base64EncodedData)).TrimEnd('=').Replace('+', '-').Replace('/', '_');
+
+  private string GenerateJwt(AuthUser user, IEnumerable<string> roles)
+  {
+    List<Claim> claims =
+    [
+      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+      new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+    ];
+
+    if (user.UserName is not null)
+    {
+      claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+    }
+
+    if (user.Email is not null)
+    {
+      claims.Add(new Claim(ClaimTypes.Email, user.Email));
+    }
+
+    if (user.PhoneNumber is not null)
+    {
+      claims.Add(new Claim(ClaimTypes.HomePhone, user.PhoneNumber));
+    }
+
+    IEnumerable<Claim> roleClaims = roles.Select(r => new Claim(ClaimTypes.Role, r));
+    claims.AddRange(roleClaims);
+
+    SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(options.Value.Secret));
+    SigningCredentials creds = new(key, SecurityAlgorithms.HmacSha256);
+    DateTime expires = DateTime.Now.AddDays(Convert.ToDouble(options.Value.ExpirationInDays));
+
+    JwtSecurityToken token = new(
+        issuer: options.Value.Issuer,
+        audience: options.Value.Issuer,
+        claims: claims,
+        expires: expires,
+        signingCredentials: creds
+    );
+
+    return new JwtSecurityTokenHandler().WriteToken(token);
+  }
 }
+

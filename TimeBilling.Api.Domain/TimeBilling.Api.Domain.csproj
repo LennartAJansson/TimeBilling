@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.0.0-preview" />
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TimeBilling.Api.Domain.Abstract\TimeBilling.Api.Domain.Abstract.csproj" />
+    <ProjectReference Include="..\TimeBilling.Common.Messaging\TimeBilling.Common.Messaging.csproj" />
     <ProjectReference Include="..\TimeBilling.Model\TimeBilling.Model.csproj" />
   </ItemGroup>
 

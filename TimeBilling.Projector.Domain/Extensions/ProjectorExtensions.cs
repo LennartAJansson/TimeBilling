@@ -16,7 +16,7 @@ public static class ProjectorExtensions
       _ = configuration.RegisterServicesFromAssemblyContaining(typeof(CustomerProjectorCommandMediator));
     });
 
-    _ = services.AddHostedService<ChannelListener>();
+    _ = services.AddHostedService<CommandListener>();
 
     return services;
   }

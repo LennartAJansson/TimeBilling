@@ -5,20 +5,18 @@ using MediatR;
 
 using Microsoft.Extensions.Logging;
 
-using TimeBilling.Api.Domain.Abstract.Services;
 using TimeBilling.Common.Contracts;
+using TimeBilling.Common.Messaging.Services;
 
-public sealed class CustomerApiCommandMediator(ILogger<CustomerApiCommandMediator> logger, IChannelService service) :
+public sealed class CustomerApiCommandMediator(ILogger<CustomerApiCommandMediator> logger, ICommandSender nats) :
     IRequestHandler<CreateCustomerWithIdRequest, CommandResponse>,
     IRequestHandler<UpdateCustomerRequest, CommandResponse>,
     IRequestHandler<DeleteCustomerRequest, CommandResponse>
 {
-  private readonly ILogger<CustomerApiCommandMediator> logger = logger;
-  private readonly IChannelService service = service;
-
   public async Task<CommandResponse> Handle(CreateCustomerWithIdRequest request, CancellationToken cancellationToken)
   {
-    CommandResponse response = await service.CreateCustomer(request);
+    CommandResponse response = await nats.SendAsync(request);
+    //.CreateCustomer(request);
     if (logger.IsEnabled(LogLevel.Debug))
     {
       logger.LogDebug("Response: {response}", response);
@@ -28,7 +26,8 @@ public sealed class CustomerApiCommandMediator(ILogger<CustomerApiCommandMediato
 
   public async Task<CommandResponse> Handle(UpdateCustomerRequest request, CancellationToken cancellationToken)
   {
-    CommandResponse response = await service.UpdateCustomer(request);
+    CommandResponse response = await nats.SendAsync(request);
+    //.UpdateCustomer(request);
     if (logger.IsEnabled(LogLevel.Debug))
     {
       logger.LogDebug("Response: {response}", response);
@@ -38,7 +37,8 @@ public sealed class CustomerApiCommandMediator(ILogger<CustomerApiCommandMediato
 
   public async Task<CommandResponse> Handle(DeleteCustomerRequest request, CancellationToken cancellationToken)
   {
-    CommandResponse response = await service.DeleteCustomer(request);
+    CommandResponse response = await nats.SendAsync(request);
+    //.DeleteCustomer(request);
     if (logger.IsEnabled(LogLevel.Debug))
     {
       logger.LogDebug("Response: {response}", response);

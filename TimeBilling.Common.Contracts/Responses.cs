@@ -7,6 +7,7 @@ public sealed record CommandResponse(bool Success, string Message)
   public static CommandResponse Create(bool success, string message) => new(success, message);
 }
 
+
 public sealed record CustomerResponse(Guid CustomerId, string Name, IEnumerable<WorkloadResponse> Workloads)
 {
   public static CustomerResponse Create(Guid id, string name, IEnumerable<WorkloadResponse> workloads) => new(id, name, workloads);

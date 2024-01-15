@@ -15,7 +15,7 @@ builder.Services
   .ChangeMailProvider<DummyAuthMail>()
   .AddApiDomainRegistrations()
   .AddApiPersistanceRegistrations()
-  .AddMessagingRegistrations()
+  .AddNatsSender(builder.Configuration)
   .AddFeatureManagement(builder.Configuration.GetSection("FeatureManagement")
       ?? throw new ArgumentException("No feature filters found"))
     .AddFeatureFilter<PercentageFilter>();
